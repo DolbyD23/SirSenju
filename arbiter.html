@@ -5,6 +5,35 @@
     <meta charset="UTF-8">
     <title>The Arbiter – Supreme Codex</title>
     <style>
+        <style>
+/* Glitch Scanline Overlay */
+.scanline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.02),
+    rgba(255,255,255,0.02) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+  z-index: 1;
+  animation: flicker 2s infinite;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 0.08; }
+  50% { opacity: 0.04; }
+}
+
+body {
+  position: relative;
+}
+</style>
         body {
             background: linear-gradient(#000000, #1a1a2e, #000000);
             color: #f4f4f4;
@@ -62,6 +91,7 @@
     </style>
 </head>
 <body>
+    <div class="scanline"></div>
     <h1>The Arbiter</h1>
     <div class="image-box">
         <img src="arbiter.png" alt="The Arbiter">
