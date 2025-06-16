@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Energetics Ranking Codex</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #f0f0f0;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      color: #f72585;
+      margin-bottom: 10px;
+    }
+    select {
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 20px;
+      background: #222;
+      color: #f0f0f0;
+      border: 1px solid #f72585;
+    }
+    .ranking-table {
+      width: 90%;
+      max-width: 800px;
+      margin: 0 auto;
+      border-collapse: collapse;
+      background: #222;
+      box-shadow: 0 0 10px #f72585;
+    }
+    .ranking-table td {
+      border: 1px solid #444;
+      padding: 10px;
+      text-align: left;
+    }
+    .ranking-table tr:nth-child(even) {
+      background-color: #1a1a1a;
+    }
+    .ranking-table strong {
+      color: #f72585;
+    }
+    .ranking-table small {
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h1>Energetics Ranking Codex</h1>
+  <label for="energyType">Select Energy Type:</label>
+  <select id="energyType">
+    <option value="Chi">Chi</option>
+    <option value="Nuclear">Nuclear</option>
+    <option value="Light">Light</option>
+    <option value="Shadow">Shadow</option>
+    <option value="Celestial">Celestial</option>
+    <option value="Fire">Fire</option>
+    <option value="Water">Water</option>
+    <option value="Wind">Wind</option>
+    <option value="Kinetic">Kinetic</option>
+
+  </select>
+  <div id="rankingList"></div>
+  <script>
+    const rankings = {
+      "Chi": [
+        [1, "Wakari Senju", "Master of Chi and blind martial arts. Precision through energetic senses."],
+        [2, "Joann Senju", "Ethereal and Chi healer. Calm spirit, master of flow-based control."],
+        [3, "Aman Senju", "Serene blade wielder. Natural and Chi energy harmony expert."],
+        [4, "Miguel Senju", "Prodigy with dual-energy potential, fuses Chi with natural power."],
+        [5, "Asa Knight", "Healer and tactician. Channels Chi through emotional resonance."],
+        [6, "Kael Ranmaru", "Chi foundation powers his lightning forms. Swift and stable core."],
+        [7, "Kaito Tanaka", "Wind-based Chi user. Fast and precise with light-footed martial forms."],
+        [8, "Haku Sharma", "Raw brawler. Blends Chi with kinetic power through physical mastery."],
+        [9, "Selara Veyune", "Wind Chi specialist with flowing combat forms and shielding."],
+        [10, "Rina Nakamura", "Calm and centered. Merges Water and Chi for precise defense."],
+      ],
+      "Nuclear": [
+        [1, "Nyxis", "Nuclear assassin. Radiates lethal decay through precision strikes."],
+        [2, "Cipher-Zenith", "Kinetican Prime. Harnesses nuclear energy among hybrid systems."],
+        [3, "Ashcore", "Volcanic android with built-in nuclear detonators."],
+        [4, "Deaengelo Senju", "Dark experimentation led to nuclear shadow fusion techniques."],
+        [5, "Lord Nihilus", "Twisted nuclear decay aura fused with Forbidden Dark Energy."],
+        [6, "Dronak the Iron Reaper", "Brute war machine with nuclear resistance and bombardment."],
+        [7, "Vanta-02", "Stealth Kinetican with nuclear pulse saboteur tech."],
+        [8, "Giga", "Nuclear reactor-based strength model. Built for brute force."],
+        [9, "Thalon the Shadowblade", "While primarily shadow, his absorption blade stores nuclear traces."],
+        [10, "Redd Vox", "Kinetican bounty hunter with unstable nuclear cells in his cannon arm."],
+      ],
+      "Light": [
+        [1, "Aurora", "Celestial goddess of dawn. Purest light manipulation across universes."],
+        [2, "Joann Senju", "Martial light healer and spiritual beacon."],
+        [3, "Asa Knight", "Channels radiant light with healing and purifying energy."],
+        [4, "Lyra Moonshadow", "Empathic light wielder. Heart-based radiant attacks and barriers."],
+        [5, "Kaito Knight", "Hero of light-fire fusion. Embodied radiant martial justice."],
+        [6, "Selara Veyune", "Ultraviolet light flows through her wind-based grace."],
+        [7, "Seraph-X", "Aerial archangel android. Fires beams of celestial light."],
+        [8, "Aetherion", "Guardian Entity of Harmony and radiant aura flow."],
+        [9, "Emiko Knight", "Light and emotion converge through her healing and shield techniques."],
+        [10, "Pulse-Sync", "Speed-based light flashes for combat and sensory jamming."],
+      ],
+      "Shadow": [
+        [1, "Umbros", "Dark Lord of Shadows, embodies despair and enshrouding fear."],
+        [2, "Nyxis", "Master of nuclear-shadow fusion assassination."],
+        [3, "Thalon the Shadowblade", "Amphibious stealth user, deadly twin blade master."],
+        [4, "Lord Nihilus", "Fused forbidden dark and shadow into mind-breaking aura."],
+        [5, "Lysar the Riftwalker", "Teleports through shadow rifts to strike unpredictably."],
+        [6, "Xandria the Harbinger of Ruin", "Summons abyssal shadows to devour energy fields."],
+        [7, "Morrow the Null Echo", "Whispers erase presence; shadows obey his void tune."],
+        [8, "Vanta-02", "Kinetican stealth agent enhanced with shadow core."],
+        [9, "Kaelor", "Strategic controller of localized shadow fields."],
+        [10, "Tressia", "Shadow infiltrator that manipulates illusions and entry points."],
+      ],
+      "Celestial": [
+        [1, "Aurora", "Goddess of Dawn and Celestial Deity of the Celestial Sphere."],
+        [2, "Elysia", "Primordial of Creation; celestial energy flows from her essence."],
+        [3, "Seraph-X", "Celestial warfare android, channels divine light from above."],
+        [4, "Aetherion", "Guardian of Harmony, channels celestial flow and resonance."],
+        [5, "Asa Knight", "Touched by celestial blessing via healing aura manifestation."],
+        [6, "Joann Senju", "Wields ethereal and celestial-mixed spiritual purification."],
+        [7, "Fenix Brightflame", "Carries radiant celestial flame when in transformation."],
+        [8, "Pulse-Sync", "Celestial-harmonic feedback loop powers blinding velocity."],
+        [9, "Kaelith Darien", "Celestial energy empowers his lightning elemental surge."],
+        [10, "Selara Veyune", "Wind-Light hybrid, celestial defense in graceful form."],
+      ],
+      "Fire": [
+        [1, "Pyrax", "Elemental Lord of Fire, commands primal blaze of Elementaria."],
+        [2, "Kaito Knight", "Radiant Ember Fist burns with hybrid justice."],
+        [3, "Haku Sharma", "Fiery striker fused with kinetic flame bursts."],
+        [4, "Ashcore", "Volcanic android channels fire plasma detonations."],
+        [5, "Fenix Brightflame", "Blazing warrior of fire lineage."],
+        [6, "Crux Omega", "Kinetican weapon system with fire discharge modules."],
+        [7, "Cipher-Zenith", "Integrates flame coding into hybrid surges."],
+        [8, "Dawn Blakes", "Dual-type user, fire/lightning-based burst power."],
+        [9, "Proto-X", "Kinetican with unstable flame vents in berserk mode."],
+        [10, "Lyra Moonshadow", "Minor fire channeling through heart-based resonance."],
+      ],
+      "Water": [
+        [1, "Aquara", "Elemental Lord of Water, guardian of aquatic flows."],
+        [2, "Rina Nakamura", "Specialist in water constructs and barrier techniques."],
+        [3, "Tidelore Murkfolk Elder", "Ancient aquatic sage of barrier tides."],
+        [4, "Selara Veyune", "Wind-water resonance shield."],
+        [5, "Thalon the Shadowblade", "Adapted water manipulation in Murkfolk form."],
+        [6, "Faelix", "Spreads rot via corrupted water mist."],
+        [7, "Giren", "Tracker enhanced with aquatic stealth."],
+        [8, "Xor’Zen", "Body flows like water despite not using energy."],
+        [9, "Delta Howl", "Aquatic model Kinetican."],
+        [10, "Mysa Quell", "Empathic connection to flowing life forces."],
+      ],
+      "Wind": [
+        [1, "Kaito Tanaka", "Ethereal Projection and swift wind combat."],
+        [2, "Selara Veyune", "Waltz of the Soaring Bloom flows like breeze."],
+        [3, "Kaelith Darien", "Electro-wind synergy fighter."],
+        [4, "Telynn Vesh", "Crystalline wind bursts enhance spatial maneuvering."],
+        [5, "Rina Nakamura", "Channeling wind-water blend during barrier phasing."],
+        [6, "Dawn Blakes", "Wind-lightning fire combo master."],
+        [7, "Aurora", "Celestial winds bend to her will."],
+        [8, "Lyra Moonshadow", "Empathic winds stir around her."],
+        [9, "Kravonn Drex", "Utilizes underwater air pressure jets to move fast."],
+        [10, "Nebula-06", "Wind thrusters for high-altitude recon."],
+      ],
+      "Kinetic": [
+        [1, "Cipher-Zenith", "Model Prime; Apex kinetic combat hybrid."],
+        [2, "Pulse-Sync", "Neural-speed kinetic bursts and data acceleration."],
+        [3, "Nebula-06", "Sniper with kinetic aerial boosts."],
+        [4, "Haku Sharma", "Kinetic brawler empowered by explosive momentum."],
+        [5, "Kael Ranmaru", "Lightning-Kinetic fusion base."],
+        [6, "Proto-X", "Erratic, high-output kinetic overloads."],
+        [7, "Vanta-02", "Silent kinetic infiltration submodel."],
+        [8, "Scythe-Walker", "Kinetican executioner with momentum-anchored blades."],
+        [9, "Ashcore", "Fire kinetics drive magma propulsion."],
+        [10, "Giga", "Titan with kinetic-based strength systems."],
+      ],
+
+    };
+
+    const energyTypeSelect = document.getElementById("energyType");
+    const rankingList = document.getElementById("rankingList");
+
+    energyTypeSelect.addEventListener("change", () => {
+      const selected = energyTypeSelect.value;
+      rankingList.innerHTML = "";
+
+      if (rankings[selected]) {
+        const table = document.createElement("table");
+        table.classList.add("ranking-table");
+        rankings[selected].forEach(([rank, name, desc]) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `<td>${rank}</td><td><strong>${name}</strong><br><small>${desc}</small></td>`;
+          table.appendChild(row);
+        });
+        rankingList.appendChild(table);
+      }
+    });
+
+    energyTypeSelect.dispatchEvent(new Event("change"));
+  </script>
+</body>
+</html>
