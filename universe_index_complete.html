@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sir Senju: Universe Codex Index</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Georgia', serif;
+      background: linear-gradient(135deg, #1a0033, #330033, #1a0033);
+      background-size: 600% 600%;
+      animation: gradientShift 20s ease infinite;
+      color: #eee;
+      overflow-x: hidden;
+    }
+
+    @keyframes gradientShift {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    .stars {
+      background-image: radial-gradient(#ffffff33 1px, transparent 1px);
+      background-size: 4px 4px;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.1;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 100px 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h1 {
+      font-size: 3em;
+      color: #e0ccff;
+      text-shadow: 0 0 10px #aa66ff;
+      margin-bottom: 1.5em;
+    }
+
+    .universe-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+    }
+
+    .universe-list a {
+      font-size: 1.5em;
+      text-decoration: none;
+      color: #f5d3ff;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 12px 24px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .universe-list a:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      text-shadow: 0 0 6px #ff99ff;
+    }
+
+    .footer {
+      margin-top: 60px;
+      font-size: 0.9em;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="container">
+    <h1>Universe Codex Index</h1>
+    <div class="universe-list">
+      <a href="codex_elysium_nexus.html">Elysium Nexus</a>
+      <a href="codex_celestial_sphere.html">Celestial Sphere</a>
+      <a href="codex_shadowlands.html">Shadowlands</a>
+      <a href="codex_elementaria.html">Elementaria</a>
+      <a href="codex_the_abyss.html">The Abyss</a>
+      <a href="codex_galeon_tides.html">Galeon Tides</a>
+      <a href="codex_tideloore.html">Tidelore</a>
+      <a href="codex_elysian_gardens.html">Elysian Gardens</a>
+      <a href="codex_realm_of_ruin.html">Realm of Ruin</a>
+      <a href="codex_paradox_realm.html">Paradox Realm</a>
+    </div>
+    <div class="footer">Sir Senju: Multiversal Nexus – Universe Index</div>
+  </div>
+</body>
+</html>
