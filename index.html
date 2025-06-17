@@ -107,6 +107,46 @@
   <footer>
     © Sir Senju Universe – Interactive Codex Home
   </footer>
+<script>
+  const characters = [
+    { name: "Kael Ranmaru", image: "images/characters/kael.png" },
+    { name: "Sahil the Warlock", image: "images/characters/sahil.png" },
+    { name: "Nyxis", image: "images/characters/nyxis.png" },
+    { name: "Selara Veyune", image: "images/characters/selara.png" },
+    { name: "Thalon", image: "images/characters/thalon.png" },
+    { name: "Emiko Knight", image: "images/characters/emiko.png" },
+    // Add more here
+  ];
 
+  function getRandomCharacters(num) {
+    const shuffled = characters.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, num);
+  }
+
+  function insertRandomPortraits() {
+    const container = document.querySelector(".portraits");
+    const central = [
+      { name: "Wakari Senju", image: "images/characters/wakari.png" },
+      { name: "Asa Knight", image: "images/characters/asa.png" },
+      { name: "Miguel Senju", image: "images/characters/miguel.png" }
+    ];
+
+    const randoms = getRandomCharacters(2);
+
+    const portraitList = [
+      randoms[0],
+      central[1], // Asa
+      central[0], // Wakari
+      central[2], // Miguel
+      randoms[1]
+    ];
+
+    container.innerHTML = portraitList.map(c => `
+      <img src="${c.image}" alt="${c.name}" title="${c.name}">
+    `).join('');
+  }
+
+  window.onload = insertRandomPortraits;
+</script>
 </body>
 </html>
