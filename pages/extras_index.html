@@ -63,6 +63,62 @@
             50% { border-color: rgba(255, 220, 150, 0.8); box-shadow: 0 0 20px rgba(255, 220, 150, 0.6); }
             100% { border-color: rgba(255, 200, 100, 0.2); box-shadow: 0 0 8px rgba(255, 200, 100, 0.2); }
         }
+        .icon-content-block {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+.lore-search-icon {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    padding: 6px;
+    background: radial-gradient(circle, #1a0033 30%, #0f0f1f 100%);
+    box-shadow: 0 0 12px 2px rgba(128, 0, 255, 0.4);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.lore-search-icon img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: block;
+    filter: drop-shadow(0 0 4px #bbddff);
+    transition: transform 0.6s ease, filter 0.6s ease;
+}
+
+.lore-search-icon:hover {
+    box-shadow: 0 0 20px 4px rgba(100, 200, 255, 0.6),
+                0 0 40px 10px rgba(150, 100, 255, 0.4);
+}
+
+.lore-search-icon:hover img {
+    transform: scale(1.05) rotate(1deg);
+    filter: drop-shadow(0 0 6px #e0f8ff) brightness(1.1);
+}
+
+/* Starfield Animation */
+.lore-search-icon::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(white 1px, transparent 1px);
+    background-size: 20px 20px;
+    opacity: 0.05;
+    animation: twinkle 10s linear infinite;
+    z-index: 0;
+}
+
+@keyframes twinkle {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(20px, 20px); }
+}
     </style>
 </head>
 <body>
