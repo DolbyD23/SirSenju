@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Senju Lore Search Engine</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0a0a12;
+            font-family: Arial, sans-serif;
+            color: #ffffff;
+        }
+        header {
+            background: linear-gradient(to right, #1c1c2c, #2c2c3c);
+            text-align: center;
+            padding: 50px 20px 20px 20px;
+        }
+        header h1 {
+            font-size: 42px;
+            color: #ffd966;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-size: 18px;
+            color: #ccc;
+        }
+        .search-container {
+            text-align: center;
+            padding: 20px;
+        }
+        .search-box {
+            width: 60%;
+            max-width: 500px;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+        .filter-select {
+            padding: 10px;
+            font-size: 14px;
+            border-radius: 6px;
+            margin-left: 10px;
+        }
+        .results {
+            width: 80%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .result {
+            background-color: #1a1a26;
+            border-left: 4px solid #ffd966;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+        }
+        .result h3 {
+            margin: 0;
+            color: #ffcc66;
+        }
+        .result p {
+            margin: 5px 0 0;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Senju Lore Search Engine</h1>
+    <p>Search the entire Sir Senju multiverse in one place</p>
+</header>
+
+<div class="search-container">
+    <input type="text" id="searchInput" class="search-box" placeholder="Search characters, factions, energies...">
+    <select id="filterSelect" class="filter-select">
+        <option value="All">All</option>
+        <option value="Character">Characters</option>
+        <option value="Faction">Factions</option>
+        <option value="Race">Races</option>
+        <option value="Energy">Energy Types</option>
+        <option value="Ability">Abilities</option>
+        <option value="Universe">Universes</option>
+    </select>
+</div>
+
+<div class="results" id="resultsContainer"></div>
+
+<script>
+    const data = [
+        { name: "Wakari Senju", type: "Character", desc: "Blind martial artist and sensei of the Senju-Karo lineage." },
+        { name: "Sahil the Warlock", type: "Character", desc: "Myrthorian master of Forbidden Dark Energy." },
+        { name: "Forbidden Dark", type: "Energy", desc: "A corrupt and volatile energy type used by warlocks." },
+        { name: "Order of the Abyss", type: "Faction", desc: "A group devoted to Umbros and the Dark Lords." },
+        { name: "Murkfolk", type: "Race", desc: "Aquatic beings split into Tidelore and Murkcroft factions." },
+        { name: "Elysian Gardens", type: "Universe", desc: "Earth's multiversal home and base of mortal harmony." },
+        { name: "Energy Infusion", type: "Ability", desc: "Allows channeling energy through limbs or full body." }
+    ];
+
+    const searchInput = document.getElementById("searchInput");
+    const filterSelect = document.getElementById("filterSelect");
+    const resultsContainer = document.getElementById("resultsContainer");
+
+    function renderResults() {
+        const query = searchInput.value.toLowerCase();
+        const filter = filterSelect.value;
+        const filtered = data.filter(item => {
+            const matchesQuery = item.name.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query);
+            const matchesFilter = filter === "All" || item.type === filter;
+            return matchesQuery && matchesFilter;
+        });
+
+        resultsContainer.innerHTML = filtered.map(item => `
+            <div class="result">
+                <h3>${item.name} (${item.type})</h3>
+                <p>${item.desc}</p>
+            </div>
+        `).join('');
+    }
+
+    searchInput.addEventListener("input", renderResults);
+    filterSelect.addEventListener("change", renderResults);
+    renderResults();
+</script>
+
+</body>
+</html>
