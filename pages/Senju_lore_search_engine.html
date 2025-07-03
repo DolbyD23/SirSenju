@@ -91,41 +91,57 @@
 <div class="results" id="resultsContainer"></div>
 
 <script>
-    const data = [
-        { name: "Wakari Senju", type: "Character", desc: "Blind martial artist and sensei of the Senju-Karo lineage." },
-        { name: "Sahil the Warlock", type: "Character", desc: "Myrthorian master of Forbidden Dark Energy." },
-        { name: "Forbidden Dark", type: "Energy", desc: "A corrupt and volatile energy type used by warlocks." },
-        { name: "Order of the Abyss", type: "Faction", desc: "A group devoted to Umbros and the Dark Lords." },
-        { name: "Murkfolk", type: "Race", desc: "Aquatic beings split into Tidelore and Murkcroft factions." },
-        { name: "Elysian Gardens", type: "Universe", desc: "Earth's multiversal home and base of mortal harmony." },
-        { name: "Energy Infusion", type: "Ability", desc: "Allows channeling energy through limbs or full body." }
+  let data = [];
+
+  function mergeData() {
+    data = [
+      ...senjuCharacters.map(c => ({ name: c.name, type: "Character", desc: c.desc })),
+      ...senjuFactions.map(f => ({ name: f.name, type: "Faction", desc: f.desc })),
+      ...senjuRaces.map(r => ({ name: r.name, type: "Race", desc: r.desc })),
+      ...senjuUniverses.map(u => ({ name: u.name, type: "Universe", desc: u.desc })),
+      ...senjuEnergyTypes.map(e => ({ name: e.name, type: "Energy", desc: e.desc }))
     ];
 
-    const searchInput = document.getElementById("searchInput");
-    const filterSelect = document.getElementById("filterSelect");
-    const resultsContainer = document.getElementById("resultsContainer");
+    // Load abilities from JSON
+    fetch('js/full_senju_character_abilities.json')
+      .then(res => res.json())
+      .then(abilities => {
+        const formatted = abilities.map(a => ({ name: a.name, type: "Ability", desc: a.desc }));
+        data = [...data, ...formatted];
+        renderResults();
+      });
+  }
 
-    function renderResults() {
-        const query = searchInput.value.toLowerCase();
-        const filter = filterSelect.value;
-        const filtered = data.filter(item => {
-            const matchesQuery = item.name.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query);
-            const matchesFilter = filter === "All" || item.type === filter;
-            return matchesQuery && matchesFilter;
-        });
+  const searchInput = document.getElementById("searchInput");
+  const filterSelect = document.getElementById("filterSelect");
+  const resultsContainer = document.getElementById("resultsContainer");
 
-        resultsContainer.innerHTML = filtered.map(item => `
-            <div class="result">
-                <h3>${item.name} (${item.type})</h3>
-                <p>${item.desc}</p>
-            </div>
-        `).join('');
-    }
+  function renderResults() {
+    const query = searchInput.value.toLowerCase();
+    const filter = filterSelect.value;
+    const filtered = data.filter(item => {
+      const matchesQuery = item.name.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query);
+      const matchesFilter = filter === "All" || item.type === filter;
+      return matchesQuery && matchesFilter;
+    });
 
-    searchInput.addEventListener("input", renderResults);
-    filterSelect.addEventListener("change", renderResults);
-    renderResults();
+    resultsContainer.innerHTML = filtered.map(item => `
+      <div class="result">
+        <h3>${item.name} (${item.type})</h3>
+        <p>${item.desc}</p>
+      </div>
+    `).join('');
+  }
+
+  searchInput.addEventListener("input", renderResults);
+  filterSelect.addEventListener("change", renderResults);
+
+  mergeData(); // Initialize the dataset
 </script>
-
+<script src="js/senju_characters_FULL.js"></script>
+<script src="js/senju_universes.js"></script>
+<script src="js/senju_factions.js"></script>
+<script src="js/senju_energy_types.js"></script>
+<script src="js/senju_races.js"></script>
 </body>
 </html>
