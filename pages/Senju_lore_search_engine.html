@@ -103,7 +103,7 @@
     ];
 
     // Load abilities from JSON
-    fetch(fetch('../js/full_senju_character_abilities.json')
+    fetch('../js/full_senju_character_abilities.json')
       .then(res => res.json())
       .then(abilities => {
         const formatted = abilities.map(a => ({ name: a.name, type: "Ability", desc: a.desc }));
