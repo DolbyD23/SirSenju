@@ -103,7 +103,7 @@
     ];
 
     // Load abilities from JSON
-    fetch('js/full_senju_character_abilities.json')
+    fetch(fetch('../js/full_senju_character_abilities.json')
       .then(res => res.json())
       .then(abilities => {
         const formatted = abilities.map(a => ({ name: a.name, type: "Ability", desc: a.desc }));
@@ -138,10 +138,10 @@
 
   mergeData(); // Initialize the dataset
 </script>
-<script src="js/senju_characters_FULL.js"></script>
-<script src="js/senju_universes.js"></script>
-<script src="js/senju_factions.js"></script>
-<script src="js/senju_energy_types.js"></script>
-<script src="js/senju_races.js"></script>
+<script src="../js/senju_characters_FULL.js"></script>
+<script src="../js/senju_universes.js"></script>
+<script src="../js/senju_factions.js"></script>
+<script src="../js/senju_energy_types.js"></script>
+<script src="../js/senju_races.js"></script>
 </body>
 </html>
