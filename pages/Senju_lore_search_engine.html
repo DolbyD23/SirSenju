@@ -75,10 +75,6 @@
             color: #cccccc;
             font-size: 16px;
         }
-        .result .placeholder-desc {
-            font-style: italic;
-            color: #999999;
-        }
         .result .character-link {
             font-style: italic;
             color: #ffd966;
@@ -128,18 +124,15 @@
         let data = [];
 
         function loadData() {
-            // Show loading indicator
             const resultsContainer = document.getElementById('resultsContainer');
             resultsContainer.innerHTML = '<p class="loading">Loading data...</p>';
 
-            // Safely access JS file data, default to empty arrays
             const characters = window.senjuLoreData || [];
             const universes = window.senjuUniverses || [];
             const factions = window.senjuFactions || [];
             const energyTypes = window.senjuEnergyTypes || [];
             const races = window.senjuRaces || [];
 
-            // Merge JS data
             data = [
                 ...characters.map(item => ({ name: item.name || 'Unknown', type: 'Character', desc: item.desc || 'No description' })),
                 ...universes.map(item => ({ name: item.name || 'Unknown', type: 'Universe', desc: item.desc || 'No description' })),
@@ -148,24 +141,20 @@
                 ...races.map(item => ({ name: item.name || 'Unknown', type: 'Race', desc: item.desc || 'No description' }))
             ];
 
-            // Render initial results
             renderResults();
 
-            // Fetch and merge JSON abilities
             fetch('../js/full_senju_character_abilities.json')
                 .then(response => {
                     if (!response.ok) throw new Error(`Failed to load abilities: ${response.status}`);
                     return response.json();
                 })
                 .then(abilities => {
-                    // Flatten abilities, include character name for linking
                     const formattedAbilities = Object.keys(abilities).flatMap(character => 
                         abilities[character].map(ability => ({
                             name: ability.name || 'Unknown',
                             type: 'Ability',
                             desc: ability.description || 'No description available',
-                            character: character,
-                            isPlaceholder: !ability.description || ability.description.split(' ').length <= 10
+                            character: character
                         }))
                     );
                     data = [...data, ...formattedAbilities];
@@ -173,33 +162,28 @@
                 })
                 .catch(error => {
                     console.error('Error loading abilities:', error);
-                    renderResults(); // Render with available data
+                    renderResults();
                 });
         }
 
-        // Get DOM elements
         const searchInput = document.getElementById('searchInput');
         const filterSelect = document.getElementById('filterSelect');
         const resultsContainer = document.getElementById('resultsContainer');
 
-        // Escape HTML to prevent XSS
         function escapeHTML(str) {
             return str.replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>').replace(/"/g, '"').replace(/'/g, ''');
         }
 
-        // Highlight search terms in text
         function highlightSearchTerm(text, query) {
             if (!query) return escapeHTML(text);
             const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
             return escapeHTML(text).replace(regex, '<mark>$1</mark>');
         }
 
-        // Render filtered and sorted results
         function renderResults() {
             const query = (searchInput.value || '').toLowerCase().trim();
             const filter = filterSelect.value;
 
-            // Filter data
             const filteredData = data.filter(item => {
                 const name = (item.name || '').toLowerCase();
                 const desc = (item.desc || '').toLowerCase();
@@ -208,29 +192,25 @@
                 return matchesQuery && matchesFilter;
             });
 
-            // Sort by type, then name
             filteredData.sort((a, b) => {
                 if (a.type === b.type) return a.name.localeCompare(b.name);
                 return a.type.localeCompare(b.type);
             });
 
-            // Render results
             resultsContainer.innerHTML = filteredData.length > 0
                 ? filteredData.map(item => `
                     <div class="result">
                         <h3>${highlightSearchTerm(item.name, query)} (${item.type})</h3>
-                        <p class="${item.isPlaceholder ? 'placeholder-desc' : ''}">${highlightSearchTerm(item.desc, query)}</p>
+                        <p>${highlightSearchTerm(item.desc, query)}</p>
                         ${item.type === 'Ability' && item.character ? `<p class="character-link">Used by ${highlightSearchTerm(item.character, query)}</p>` : ''}
                     </div>
                 `).join('')
                 : '<p class="no-results">No results found.</p>';
         }
 
-        // Event listeners for search and filter
         searchInput.addEventListener('input', renderResults);
         filterSelect.addEventListener('change', renderResults);
 
-        // Load data after scripts are available
         window.onload = loadData;
     </script>
 </body>
