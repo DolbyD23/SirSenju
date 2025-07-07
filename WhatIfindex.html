@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sir Senju - What If Scenarios</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="scroll-container">
+        <div class="scroll-content">
+            <header>
+                <h1>Sir Senju What If Scenarios</h1>
+                <p>Explore alternate destinies of the multiverse</p>
+            </header>
+
+            <section class="controls">
+                <select id="category-filter" onchange="filterScenarios()">
+                    <option value="">All Categories</option>
+                    <option value="Hero Transformation">Hero Transformation</option>
+                    <option value="Villain Arc">Villain Arc</option>
+                    <option value="Betrayal and Corruption">Betrayal and Corruption</option>
+                    <option value="Family Dynamics">Family Dynamics</option>
+                    <option value="Cosmic Disruption">Cosmic Disruption</option>
+                    <option value="Alliance and Unity">Alliance and Unity</option>
+                    <option value="Timeline and Origin">Timeline and Origin</option>
+                    <option value="Multiversal Shift">Multiversal Shift</option>
+                    <option value="Redemption and Restoration">Redemption and Restoration</option>
+                </select>
+                <button onclick="showRandomScenario()">Random Scenario</button>
+            </section>
+
+            <section class="scenario-section">
+                <div id="scenario-grid" class="card-grid"></div>
+                <div class="pagination">
+                    <button id="prev-page" onclick="changePage(-1)">Previous</button>
+                    <span id="page-info"></span>
+                    <button id="next-page" onclick="changePage(1)">Next</button>
+                </div>
+            </section>
+
+            <section class="lore">
+                <h2>Multiverse Lore</h2>
+                <p>Discover alternate paths where heroes rise, villains triumph, or the cosmos shifts.</p>
+            </section>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
