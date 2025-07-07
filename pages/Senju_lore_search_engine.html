@@ -75,6 +75,10 @@
             color: #cccccc;
             font-size: 16px;
         }
+        .result .placeholder-desc {
+            font-style: italic;
+            color: #999999;
+        }
         .result .character-link {
             font-style: italic;
             color: #ffd966;
@@ -160,7 +164,8 @@
                             name: ability.name || 'Unknown',
                             type: 'Ability',
                             desc: ability.description || 'No description available',
-                            character: character // Store character name for linking
+                            character: character,
+                            isPlaceholder: !ability.description || ability.description.split(' ').length <= 10 // Flag short descriptions
                         }))
                     );
                     data = [...data, ...formattedAbilities];
@@ -214,7 +219,7 @@
                 ? filteredData.map(item => `
                     <div class="result">
                         <h3>${highlightSearchTerm(item.name, query)} (${item.type})</h3>
-                        <p>${highlightSearchTerm(item.desc, query)}</p>
+                        <p class="${item.isPlaceholder ? 'placeholder-desc' : ''}">${highlightSearchTerm(item.desc, query)}</p>
                         ${item.type === 'Ability' && item.character ? `<p class="character-link">Used by ${highlightSearchTerm(item.character, query)}</p>` : ''}
                     </div>
                 `).join('')
