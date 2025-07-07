@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Senju Lore Search Engine</title>
     <style>
         html, body {
@@ -11,20 +12,22 @@
             background-color: #0a0a12;
             font-family: Arial, sans-serif;
             color: #ffffff;
+            min-height: 100vh;
         }
         header {
             background: linear-gradient(to right, #1c1c2c, #2c2c3c);
             text-align: center;
-            padding: 50px 20px 20px 20px;
+            padding: 50px 20px 20px;
         }
         header h1 {
             font-size: 42px;
             color: #ffd966;
-            margin-bottom: 10px;
+            margin: 0 0 10px;
         }
         header p {
             font-size: 18px;
-            color: #ccc;
+            color: #cccccc;
+            margin: 0;
         }
         .search-container {
             text-align: center;
@@ -37,13 +40,17 @@
             font-size: 16px;
             border: none;
             border-radius: 6px;
-            margin-bottom: 15px;
+            margin: 0 10px 15px 0;
+            background-color: #1a1a26;
+            color: #ffffff;
         }
         .filter-select {
             padding: 10px;
             font-size: 14px;
             border-radius: 6px;
-            margin-left: 10px;
+            border: none;
+            background-color: #1a1a26;
+            color: #ffffff;
         }
         .results {
             width: 80%;
@@ -61,10 +68,29 @@
         .result h3 {
             margin: 0;
             color: #ffcc66;
+            font-size: 20px;
         }
         .result p {
             margin: 5px 0 0;
-            color: #ccc;
+            color: #cccccc;
+            font-size: 16px;
+        }
+        .result .character-link {
+            font-style: italic;
+            color: #ffd966;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .no-results, .loading {
+            text-align: center;
+            color: #cccccc;
+            font-size: 18px;
+        }
+        mark {
+            background-color: #ffd966;
+            color: #0a0a12;
+            padding: 0 2px;
+            border-radius: 2px;
         }
     </style>
 </head>
@@ -85,7 +111,9 @@
             <option value="Universe">Universes</option>
         </select>
     </div>
-    <div class="results" id="resultsContainer"></div>
+    <div class="results" id="resultsContainer">
+        <p class="loading">Loading data...</p>
+    </div>
 
     <script src="../js/senju_characters_FULL.js"></script>
     <script src="../js/senju_universes.js"></script>
@@ -95,61 +123,110 @@
     <script>
         let data = [];
 
-        function mergeData() {
-            // Ensure variables exist, fallback to empty arrays if undefined
+        function loadData() {
+            // Show loading indicator
+            const resultsContainer = document.getElementById('resultsContainer');
+            resultsContainer.innerHTML = '<p class="loading">Loading data...</p>';
+
+            // Safely access JS file data, default to empty arrays
+            const characters = window.senjuLoreData || [];
+            const universes = window.senjuUniverses || [];
+            const factions = window.senjuFactions || [];
+            const energyTypes = window.senjuEnergyTypes || [];
+            const races = window.senjuRaces || [];
+
+            // Merge JS data
             data = [
-                ...(window.senjuCharacters || []).map(c => ({ name: c.name, type: "Character", desc: c.desc })),
-                ...(window.senjuFactions || []).map(f => ({ name: f.name, type: "Faction", desc: f.desc })),
-                ...(window.senjuRaces || []).map(r => ({ name: r.name, type: "Race", desc: r.desc })),
-                ...(window.senjuUniverses || []).map(u => ({ name: u.name, type: "Universe", desc: u.desc })),
-                ...(window.senjuEnergyTypes || []).map(e => ({ name: e.name, type: "Energy", desc: e.desc }))
+                ...characters.map(item => ({ name: item.name || 'Unknown', type: 'Character', desc: item.desc || 'No description' })),
+                ...universes.map(item => ({ name: item.name || 'Unknown', type: 'Universe', desc: item.desc || 'No description' })),
+                ...factions.map(item => ({ name: item.name || 'Unknown', type: 'Faction', desc: item.desc || 'No description' })),
+                ...energyTypes.map(item => ({ name: item.name || 'Unknown', type: 'Energy', desc: item.desc || 'No description' })),
+                ...races.map(item => ({ name: item.name || 'Unknown', type: 'Race', desc: item.desc || 'No description' }))
             ];
-            renderResults(); // Render initial data
+
+            // Render initial results
+            renderResults();
+
+            // Fetch and merge JSON abilities
             fetch('../js/full_senju_character_abilities.json')
-                .then(res => {
-                    if (!res.ok) throw new Error(`Failed to load JSON: ${res.status}`);
-                    return res.json();
+                .then(response => {
+                    if (!response.ok) throw new Error(`Failed to load abilities: ${response.status}`);
+                    return response.json();
                 })
                 .then(abilities => {
-                    const formatted = abilities.map(a => ({ name: a.name, type: "Ability", desc: a.desc }));
-                    data = [...data, ...formatted];
+                    // Flatten abilities, include character name for linking
+                    const formattedAbilities = Object.keys(abilities).flatMap(character => 
+                        abilities[character].map(ability => ({
+                            name: ability.name || 'Unknown',
+                            type: 'Ability',
+                            desc: ability.description || 'No description available',
+                            character: character // Store character name for linking
+                        }))
+                    );
+                    data = [...data, ...formattedAbilities];
                     renderResults();
                 })
-                .catch(err => {
-                    console.error('Error loading abilities:', err);
-                    renderResults();
+                .catch(error => {
+                    console.error('Error loading abilities:', error);
+                    renderResults(); // Render with available data
                 });
         }
 
-        const searchInput = document.getElementById("searchInput");
-        const filterSelect = document.getElementById("filterSelect");
-        const resultsContainer = document.getElementById("resultsContainer");
+        // Get DOM elements
+        const searchInput = document.getElementById('searchInput');
+        const filterSelect = document.getElementById('filterSelect');
+        const resultsContainer = document.getElementById('resultsContainer');
 
+        // Escape HTML to prevent XSS
+        function escapeHTML(str) {
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+        }
+
+        // Highlight search terms in text
+        function highlightSearchTerm(text, query) {
+            if (!query) return escapeHTML(text);
+            const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+            return escapeHTML(text).replace(regex, '<mark>$1</mark>');
+        }
+
+        // Render filtered and sorted results
         function renderResults() {
-            const query = searchInput.value.toLowerCase();
+            const query = (searchInput.value || '').toLowerCase().trim();
             const filter = filterSelect.value;
-            const filtered = data.filter(item => {
+
+            // Filter data
+            const filteredData = data.filter(item => {
                 const name = (item.name || '').toLowerCase();
                 const desc = (item.desc || '').toLowerCase();
                 const matchesQuery = name.includes(query) || desc.includes(query);
-                const matchesFilter = filter === "All" || item.type === filter;
+                const matchesFilter = filter === 'All' || item.type === filter;
                 return matchesQuery && matchesFilter;
             });
 
-            resultsContainer.innerHTML = filtered.length > 0
-                ? filtered.map(item => `
+            // Sort by type, then name
+            filteredData.sort((a, b) => {
+                if (a.type === b.type) return a.name.localeCompare(b.name);
+                return a.type.localeCompare(b.type);
+            });
+
+            // Render results
+            resultsContainer.innerHTML = filteredData.length > 0
+                ? filteredData.map(item => `
                     <div class="result">
-                        <h3>${item.name} (${item.type})</h3>
-                        <p>${item.desc}</p>
+                        <h3>${highlightSearchTerm(item.name, query)} (${item.type})</h3>
+                        <p>${highlightSearchTerm(item.desc, query)}</p>
+                        ${item.type === 'Ability' && item.character ? `<p class="character-link">Used by ${highlightSearchTerm(item.character, query)}</p>` : ''}
                     </div>
                 `).join('')
-                : '<p>No results found.</p>';
+                : '<p class="no-results">No results found.</p>';
         }
 
-        searchInput.addEventListener("input", renderResults);
-        filterSelect.addEventListener("change", renderResults);
+        // Event listeners for search and filter
+        searchInput.addEventListener('input', renderResults);
+        filterSelect.addEventListener('change', renderResults);
 
-        mergeData(); // Initialize after scripts load
+        // Load data after scripts are available
+        window.onload = loadData;
     </script>
 </body>
 </html>
