@@ -165,7 +165,7 @@
                             type: 'Ability',
                             desc: ability.description || 'No description available',
                             character: character,
-                            isPlaceholder: !ability.description || ability.description.split(' ').length <= 10 // Flag short descriptions
+                            isPlaceholder: !ability.description || ability.description.split(' ').length <= 10
                         }))
                     );
                     data = [...data, ...formattedAbilities];
@@ -184,7 +184,7 @@
 
         // Escape HTML to prevent XSS
         function escapeHTML(str) {
-            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+            return str.replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>').replace(/"/g, '"').replace(/'/g, ''');
         }
 
         // Highlight search terms in text
