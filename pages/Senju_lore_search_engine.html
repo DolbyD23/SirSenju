@@ -208,7 +208,12 @@
         const paginationContainer = document.getElementById('paginationContainer');
 
         function escapeHTML(str) {
-            return str.replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>').replace(/"/g, '"').replace(/'/g, ''');
+        return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
         }
 
         function highlightSearchTerm(text, query) {
