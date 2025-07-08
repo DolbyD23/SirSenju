@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Senju Lore Search Engine</title>
+    <meta name="description" content="Search characters, factions, abilities, and more from the Sir Senju multiverse.">
+    <link rel="icon" href="/favicon.png" type="image/png">
     <style>
         html, body {
             margin: 0;
@@ -43,6 +45,14 @@
             background-color: #1a1a26;
             color: #ffffff;
         }
+        .reset-button {
+            background-color: #ff4444;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 10px;
+            cursor: pointer;
+        }
         .filter-select {
             padding: 10px;
             font-size: 14px;
@@ -63,6 +73,10 @@
             padding: 15px;
             margin-bottom: 15px;
             border-radius: 6px;
+        }
+        .result.active {
+            border-left: 4px solid #00ffff;
+            background-color: #202030;
         }
         .result h3 {
             margin: 0;
@@ -122,7 +136,9 @@
         <p>Search the entire Sir Senju multiverse in one place</p>
     </header>
     <div class="search-container">
-        <input type="text" id="searchInput" class="search-box" placeholder="Search characters, factions, energies...">
+        <input type="text" id="searchInput" class="search-box" placeholder="Search characters, factions, energies..." autocomplete="off">
+        <button class="reset-button" onclick="resetSearch()">Reset</button>
+        <br>
         <select id="filterSelect" class="filter-select">
             <option value="All">All</option>
             <option value="Character">Characters</option>
@@ -138,82 +154,24 @@
     </div>
     <div class="pagination" id="paginationContainer"></div>
 
-    <script src="../js/senju_characters_FULL.js"></script>
-    <script src="../js/senju_universes.js"></script>
-    <script src="../js/senju_factions.js"></script>
-    <script src="../js/senju_energy_types.js"></script>
-    <script src="../js/senju_races.js"></script>
+    <script src="../js/senju_characters_FULL.js" defer></script>
+    <script src="../js/senju_universes.js" defer></script>
+    <script src="../js/senju_factions.js" defer></script>
+    <script src="../js/senju_energy_types.js" defer></script>
+    <script src="../js/senju_races.js" defer></script>
     <script>
         let data = [];
         let currentPage = 1;
         const resultsPerPage = 20;
-
-        function loadData() {
-            // Load .js files with error handling
-            const loadDataWithFallback = (variable, type) => {
-                try {
-                    const items = window[variable] || [];
-                    console.log(`${type} loaded: ${items.length}`);
-                    return items.map(item => ({
-                        name: item.name || `Unknown ${type}`,
-                        type: type,
-                        desc: item.desc || `No ${type.toLowerCase()} description available`
-                    }));
-                } catch (e) {
-                    console.error(`Error accessing ${type} data:`, e);
-                    return [];
-                }
-            };
-
-            // Load data from .js files
-            data = [
-                ...loadDataWithFallback('senjuLoreData', 'Character'),
-                ...loadDataWithFallback('senjuUniverses', 'Universe'),
-                ...loadDataWithFallback('senjuFactions', 'Faction'),
-                ...loadDataWithFallback('senjuEnergyTypes', 'Energy'),
-                ...loadDataWithFallback('senjuRaces', 'Race')
-            ];
-            console.log('Initial data length (without abilities):', data.length);
-
-            // Load abilities JSON
-            fetch('../js/full_senju_character_abilities.json')
-                .then(response => {
-                    if (!response.ok) throw new Error(`Failed to load abilities: ${response.status}`);
-                    return response.json();
-                })
-                .then(abilities => {
-                    const formattedAbilities = Object.keys(abilities).flatMap(character =>
-                        abilities[character].map(ability => ({
-                            name: ability.name || 'Unknown Ability',
-                            type: 'Ability',
-                            desc: ability.description || 'No description available',
-                            character: character
-                        }))
-                    );
-                    console.log('Abilities loaded:', formattedAbilities.length);
-                    data = [...data, ...formattedAbilities];
-                    console.log('Total data length:', data.length);
-                    renderResults();
-                })
-                .catch(error => {
-                    console.error('Error loading abilities:', error);
-                    document.getElementById('resultsContainer').innerHTML = '<p class="error">Error loading abilities. Displaying available data.</p>';
-                    renderResults();
-                });
-        }
-
-        const searchInput = document.getElementById('searchInput');
-        const filterSelect = document.getElementById('filterSelect');
-        const resultsContainer = document.getElementById('resultsContainer');
-        const paginationContainer = document.getElementById('paginationContainer');
+        let activeIndex = -1;
 
         function escapeHTML(str) {
-        return str
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
+            return str
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
         }
 
         function highlightSearchTerm(text, query) {
@@ -222,15 +180,46 @@
             return escapeHTML(text).replace(regex, '<mark>$1</mark>');
         }
 
+        function fuzzyMatch(query, text) {
+            query = query.toLowerCase();
+            text = text.toLowerCase();
+            return text.includes(query) || getLevenshteinDistance(query, text) <= 2;
+        }
+
+        function getLevenshteinDistance(a, b) {
+            const matrix = Array.from({ length: a.length + 1 }, () =>
+                Array(b.length + 1).fill(0)
+            );
+            for (let i = 0; i <= a.length; i++) matrix[i][0] = i;
+            for (let j = 0; j <= b.length; j++) matrix[0][j] = j;
+            for (let i = 1; i <= a.length; i++) {
+                for (let j = 1; j <= b.length; j++) {
+                    const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+                    matrix[i][j] = Math.min(
+                        matrix[i - 1][j] + 1,
+                        matrix[i][j - 1] + 1,
+                        matrix[i - 1][j - 1] + cost
+                    );
+                }
+            }
+            return matrix[a.length][b.length];
+        }
+
+        function resetSearch() {
+            searchInput.value = '';
+            renderResults(1);
+        }
+
         function renderResults(page = 1) {
             currentPage = page;
+            activeIndex = -1;
             const query = (searchInput.value || '').toLowerCase().trim();
             const filter = filterSelect.value;
 
             const filteredData = data.filter(item => {
                 const name = (item.name || '').toLowerCase();
                 const desc = (item.desc || '').toLowerCase();
-                const matchesQuery = name.includes(query) || desc.includes(query);
+                const matchesQuery = !query || fuzzyMatch(query, name) || fuzzyMatch(query, desc);
                 const matchesFilter = filter === 'All' || item.type === filter;
                 return matchesQuery && matchesFilter;
             });
@@ -247,8 +236,8 @@
             const paginatedData = filteredData.slice(startIndex, endIndex);
 
             resultsContainer.innerHTML = paginatedData.length > 0
-                ? paginatedData.map(item => `
-                    <div class="result">
+                ? paginatedData.map((item, i) => `
+                    <div class="result${i === activeIndex ? ' active' : ''}">
                         <h3>${highlightSearchTerm(item.name, query)} (${item.type})</h3>
                         <p>${highlightSearchTerm(item.desc, query)}</p>
                         ${item.type === 'Ability' && item.character ? `<p class="character-link">Used by ${highlightSearchTerm(item.character, query)}</p>` : ''}
@@ -256,16 +245,77 @@
                 `).join('')
                 : '<p class="no-results">No results found.</p>';
 
-            // Render pagination controls
-            paginationContainer.innerHTML = `
+            paginationContainer.innerHTML = totalPages > 1 ? `
                 <button onclick="renderResults(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>Previous</button>
                 <span>Page ${currentPage} of ${totalPages}</span>
                 <button onclick="renderResults(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>Next</button>
-            `;
+            ` : '';
         }
+
+        function loadData() {
+            const loadDataWithFallback = (variable, type) => {
+                try {
+                    const items = window[variable] || [];
+                    return items.map(item => ({
+                        name: item.name || `Unknown ${type}`,
+                        type: type,
+                        desc: item.desc || `No ${type.toLowerCase()} description available`
+                    }));
+                } catch {
+                    return [];
+                }
+            };
+
+            data = [
+                ...loadDataWithFallback('senjuLoreData', 'Character'),
+                ...loadDataWithFallback('senjuUniverses', 'Universe'),
+                ...loadDataWithFallback('senjuFactions', 'Faction'),
+                ...loadDataWithFallback('senjuEnergyTypes', 'Energy'),
+                ...loadDataWithFallback('senjuRaces', 'Race')
+            ];
+
+            fetch('../js/full_senju_character_abilities.json')
+                .then(res => res.ok ? res.json() : Promise.reject(res.status))
+                .then(abilities => {
+                    const formattedAbilities = Object.keys(abilities).flatMap(character =>
+                        abilities[character].map(ability => ({
+                            name: ability.name || 'Unknown Ability',
+                            type: 'Ability',
+                            desc: ability.description || 'No description available',
+                            character: character
+                        }))
+                    );
+                    data = [...data, ...formattedAbilities];
+                    renderResults();
+                })
+                .catch(() => {
+                    document.getElementById('resultsContainer').innerHTML = '<p class="error">Error loading abilities. Displaying available data.</p>';
+                    renderResults();
+                });
+        }
+
+        const searchInput = document.getElementById('searchInput');
+        const filterSelect = document.getElementById('filterSelect');
 
         searchInput.addEventListener('input', () => renderResults(1));
         filterSelect.addEventListener('change', () => renderResults(1));
+
+        document.addEventListener('keydown', (e) => {
+            const results = document.querySelectorAll('.result');
+            if (!results.length) return;
+
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                activeIndex = (activeIndex + 1) % results.length;
+                renderResults(currentPage);
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                activeIndex = (activeIndex - 1 + results.length) % results.length;
+                renderResults(currentPage);
+            } else if (e.key === 'Enter' && activeIndex >= 0) {
+                results[activeIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        });
 
         window.onload = loadData;
     </script>
