@@ -1,4 +1,4 @@
-const senjuEnergyTypes = [
+window.senjuEnergyTypes = [
   {
     "name": "Chi Energy",
     "type": "Energy Type",
