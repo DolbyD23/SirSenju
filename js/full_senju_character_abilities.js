@@ -1692,5 +1692,5 @@ window.fullcharacterabilities = {
       "name": "Origin Pulse Collapse",
       "description": "Triggers a collapsing pulse of balanced energy, destabilizing foes. The Arbiter’s technique enforces order, overwhelming enemies with his cosmic authority."
     }
-  ],
+  ]
 }
