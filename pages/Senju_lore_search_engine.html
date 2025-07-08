@@ -1,355 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Senju Lore Search Engine</title>
-    <meta name="description" content="Search characters, factions, abilities, and more from the Sir Senju multiverse.">
-    <link rel="icon" href="/favicon.png" type="image/png">
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            background-color: #0a0a12;
-            font-family: Arial, sans-serif;
-            color: #ffffff;
-            min-height: 100vh;
-        }
-        header {
-            background: linear-gradient(to right, #1c1c2c, #2c2c3c);
-            text-align: center;
-            padding: 50px 20px 20px;
-        }
-        header h1 {
-            font-size: 42px;
-            color: #ffd966;
-            margin: 0 0 10px;
-        }
-        header p {
-            font-size: 18px;
-            color: #cccccc;
-            margin: 0;
-        }
-        .search-container {
-            text-align: center;
-            padding: 20px;
-        }
-        .search-box {
-            width: 60%;
-            max-width: 500px;
-            padding: 12px;
-            font-size: 16px;
-            border: none;
-            border-radius: 6px;
-            margin: 0 10px 15px 0;
-            background-color: #1a1a26;
-            color: #ffffff;
-        }
-        .reset-button {
-            background-color: #ff4444;
-            color: #fff;
-            border: none;
-            border-radius: 6px;
-            padding: 10px;
-            cursor: pointer;
-        }
-        .filter-select {
-            padding: 10px;
-            font-size: 14px;
-            border-radius: 6px;
-            border: none;
-            background-color: #1a1a26;
-            color: #ffffff;
-        }
-        .results {
-            width: 80%;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .result {
-            background-color: #1a1a26;
-            border-left: 4px solid #ffd966;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 6px;
-        }
-        .result.active {
-            border-left: 4px solid #00ffff;
-            background-color: #202030;
-        }
-        .result h3 {
-            margin: 0;
-            color: #ffcc66;
-            font-size: 20px;
-        }
-        .result p {
-            margin: 5px 0 0;
-            color: #cccccc;
-            font-size: 16px;
-        }
-        .result .character-link {
-            font-style: italic;
-            color: #ffd966;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-        .no-results, .error {
-            text-align: center;
-            color: #cccccc;
-            font-size: 18px;
-        }
-        .pagination {
-            text-align: center;
-            padding: 20px;
-        }
-        .pagination button {
-            padding: 10px 20px;
-            margin: 0 5px;
-            font-size: 14px;
-            border: none;
-            border-radius: 6px;
-            background-color: #1a1a26;
-            color: #ffffff;
-            cursor: pointer;
-        }
-        .pagination button:disabled {
-            background-color: #2c2c3c;
-            cursor: not-allowed;
-        }
-        .pagination span {
-            font-size: 16px;
-            color: #cccccc;
-            margin: 0 10px;
-        }
-        mark {
-            background-color: #ffd966;
-            color: #0a0a12;
-            padding: 0 2px;
-            border-radius: 2px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Senju Lore Search Engine</title>
+  <link rel="icon" href="/favicon.png" type="image/png" />
+  <meta name="description" content="Search characters, factions, abilities, and more from the Sir Senju multiverse." />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #0a0a12;
+      font-family: Arial, sans-serif;
+      color: #ffffff;
+      min-height: 100vh;
+    }
+    header {
+      background: linear-gradient(to right, #1c1c2c, #2c2c3c);
+      text-align: center;
+      padding: 50px 20px 20px;
+    }
+    header h1 {
+      font-size: 42px;
+      color: #ffd966;
+      margin: 0 0 10px;
+    }
+    header p {
+      font-size: 18px;
+      color: #cccccc;
+      margin: 0;
+    }
+    .search-container {
+      text-align: center;
+      padding: 20px;
+    }
+    .search-box, .filter-select {
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      margin: 0 5px 15px;
+      background-color: #1a1a26;
+      color: #ffffff;
+    }
+    .reset-button {
+      background-color: #ff4444;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 10px;
+      cursor: pointer;
+    }
+    .results {
+      width: 80%;
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+    }
+    .result {
+      background-color: #1a1a26;
+      border-left: 4px solid #ffd966;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+    }
+    .result h3 {
+      margin: 0;
+      font-size: 20px;
+      color: #ffcc66;
+    }
+    .result p {
+      color: #cccccc;
+    }
+    .pagination {
+      text-align: center;
+      padding: 20px;
+    }
+    .pagination button {
+      padding: 10px 20px;
+      margin: 0 5px;
+      font-size: 14px;
+      background-color: #1a1a26;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      cursor: pointer;
+    }
+    .pagination button:disabled {
+      background-color: #333;
+      cursor: not-allowed;
+    }
+    mark {
+      background-color: #ffd966;
+      color: #0a0a12;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Senju Lore Search Engine</h1>
-        <p>Search the entire Sir Senju multiverse in one place</p>
-    </header>
-    <div class="search-container">
-        <input type="text" id="searchInput" class="search-box" placeholder="Search characters, factions, energies..." autocomplete="off">
-        <button class="reset-button" onclick="resetSearch()">Reset</button>
-        <br>
-        <select id="filterSelect" class="filter-select">
-            <option value="All">All</option>
-            <option value="Character">Characters</option>
-            <option value="Faction">Factions</option>
-            <option value="Race">Races</option>
-            <option value="Energy">Energy Types</option>
-            <option value="Ability">Abilities</option>
-            <option value="Universe">Universes</option>
-        </select>
-    </div>
-    <div class="results" id="resultsContainer">
-        <p class="no-results">Enter a search term to see results.</p>
-    </div>
-    <div class="pagination" id="paginationContainer"></div>
+  <header>
+    <h1>Senju Lore Search Engine</h1>
+    <p>Search the entire Sir Senju multiverse in one place</p>
+  </header>
 
-    <script src="../js/senju_characters_FULL.js" defer></script>
-    <script src="../js/senju_universes.js" defer></script>
-    <script src="../js/senju_factions.js" defer></script>
-    <script src="../js/senju_energy_types.js" defer></script>
-    <script src="../js/senju_races.js" defer></script>
-    <script>
-        let data = [];
-        let currentPage = 1;
-        const resultsPerPage = 20;
-        let activeIndex = -1;
+  <div class="search-container">
+    <input type="text" id="searchInput" class="search-box" placeholder="Search characters, factions, energies..." />
+    <button class="reset-button" onclick="resetSearch()">Reset</button>
+    <br/>
+    <select id="filterSelect" class="filter-select">
+      <option value="All">All</option>
+      <option value="Character">Characters</option>
+      <option value="Faction">Factions</option>
+      <option value="Race">Races</option>
+      <option value="Energy">Energy Types</option>
+      <option value="Ability">Abilities</option>
+      <option value="Universe">Universes</option>
+    </select>
+  </div>
 
-        function escapeHTML(str) {
-            return str
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;')
-                .replace(/'/g, '&#039;');
+  <div class="results" id="resultsContainer">
+    <p class="no-results">Enter a search term to see results.</p>
+  </div>
+  <div class="pagination" id="paginationContainer"></div>
+
+  <!-- JSON + JS Data Files -->
+  <script src="/js/senju_characters_FULL.js" defer></script>
+  <script src="/js/senju_universes.js" defer></script>
+  <script src="/js/senju_factions.js" defer></script>
+  <script src="/js/senju_energy_types.js" defer></script>
+  <script src="/js/senju_races.js" defer></script>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const filterSelect = document.getElementById('filterSelect');
+    const resultsContainer = document.getElementById('resultsContainer');
+    const paginationContainer = document.getElementById('paginationContainer');
+    let data = [], currentPage = 1, activeIndex = -1, resultsPerPage = 20;
+
+    const escapeHTML = str => str?.replace(/[&<>"']/g, m => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
+    }[m]));
+
+    const highlight = (text, query) => !query ? escapeHTML(text) :
+      escapeHTML(text).replace(new RegExp(`(${query})`, 'gi'), '<mark>$1</mark>');
+
+    const fuzzyMatch = (query, text) => text.toLowerCase().includes(query.toLowerCase()) || levenshtein(query, text) <= 2;
+
+    const levenshtein = (a, b) => {
+      const dp = Array.from({length: a.length + 1}, () => Array(b.length + 1).fill(0));
+      for (let i = 0; i <= a.length; i++) dp[i][0] = i;
+      for (let j = 0; j <= b.length; j++) dp[0][j] = j;
+      for (let i = 1; i <= a.length; i++) {
+        for (let j = 1; j <= b.length; j++) {
+          dp[i][j] = Math.min(
+            dp[i-1][j] + 1,
+            dp[i][j-1] + 1,
+            dp[i-1][j-1] + (a[i-1] === b[j-1] ? 0 : 1)
+          );
         }
+      }
+      return dp[a.length][b.length];
+    };
 
-        function highlightSearchTerm(text, query) {
-            if (!query) return escapeHTML(text);
-            const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
-            return escapeHTML(text).replace(regex, '<mark>$1</mark>');
-        }
+    function resetSearch() {
+      searchInput.value = '';
+      renderResults(1);
+    }
 
-        function fuzzyMatch(query, text) {
-            query = query.toLowerCase();
-            text = text.toLowerCase();
-            return text.includes(query) || getLevenshteinDistance(query, text) <= 2;
-        }
+    function renderResults(page = 1) {
+      currentPage = page;
+      const query = searchInput.value.toLowerCase().trim();
+      const filter = filterSelect.value;
 
-        function getLevenshteinDistance(a, b) {
-            const matrix = Array.from({ length: a.length + 1 }, () =>
-                Array(b.length + 1).fill(0)
-            );
-            for (let i = 0; i <= a.length; i++) matrix[i][0] = i;
-            for (let j = 0; j <= b.length; j++) matrix[0][j] = j;
-            for (let i = 1; i <= a.length; i++) {
-                for (let j = 1; j <= b.length; j++) {
-                    const cost = a[i - 1] === b[j - 1] ? 0 : 1;
-                    matrix[i][j] = Math.min(
-                        matrix[i - 1][j] + 1,
-                        matrix[i][j - 1] + 1,
-                        matrix[i - 1][j - 1] + cost
-                    );
-                }
-            }
-            return matrix[a.length][b.length];
-        }
+      const filtered = data.filter(item => {
+        return (!query || fuzzyMatch(query, item.name) || fuzzyMatch(query, item.desc))
+          && (filter === 'All' || item.type === filter);
+      });
 
-        function resetSearch() {
-            searchInput.value = '';
-            renderResults(1);
-        }
+      const start = (page - 1) * resultsPerPage;
+      const paginated = filtered.slice(start, start + resultsPerPage);
 
-        function renderResults(page = 1) {
-    currentPage = page;
-    activeIndex = -1;
-    const query = (searchInput.value || '').toLowerCase().trim();
-    const filter = filterSelect.value;
-
-    const filteredData = data.filter(item => {
-        const name = (item.name || '').toLowerCase();
-        const desc = (item.desc || '').toLowerCase();
-        const matchesQuery = !query || fuzzyMatch(query, name) || fuzzyMatch(query, desc);
-        const matchesFilter = filter === 'All' || item.type === filter;
-        return matchesQuery && matchesFilter;
-    });
-
-    filteredData.sort((a, b) => {
-        if (a.type === b.type) return a.name.localeCompare(b.name);
-        return a.type.localeCompare(b.type);
-    });
-
-    const totalResults = filteredData.length;
-    const totalPages = Math.ceil(totalResults / resultsPerPage);
-    const startIndex = (currentPage - 1) * resultsPerPage;
-    const endIndex = startIndex + resultsPerPage;
-    const paginatedData = filteredData.slice(startIndex, endIndex);
-
-    resultsContainer.innerHTML = paginatedData.length > 0
-        ? paginatedData.map((item, i) => {
-            const icon = getTypeIcon(item.type);
-            const typeColor = getTypeColor(item.type);
-            const characterLink = item.character
-                ? `<p class="character-link">
-                        Used by <a href="/characters/${slugify(item.character)}.html">${item.character}</a><br>
-                        <a href="/characters/${slugify(item.character)}.html" class="view-profile-link">View ${item.character}'s Profile</a>
-                   </p>`
-                : '';
-
-            return `
-                <div class="result${i === activeIndex ? ' active' : ''}" onclick="openModal('${escapeHTML(item.name)}', '${escapeHTML(item.desc)}')">
-                    <h3><span class="type-icon" style="color:${typeColor}">${icon}</span> ${highlightSearchTerm(item.name, query)} <small>(${item.type})</small></h3>
-                    <p>${highlightSearchTerm(item.desc.slice(0, 100), query)}...</p>
-                    ${characterLink}
-                </div>`;
-        }).join('')
+      resultsContainer.innerHTML = paginated.length
+        ? paginated.map(item => `
+            <div class="result">
+              <h3>${highlight(item.name, query)} <small>(${item.type})</small></h3>
+              <p>${highlight(item.desc.slice(0, 100), query)}...</p>
+              ${item.character ? `<p class="character-link">Used by ${item.character}</p>` : ''}
+            </div>
+          `).join('')
         : '<p class="no-results">No results found.</p>';
 
-    paginationContainer.innerHTML = totalPages > 1 ? `
-        <button onclick="renderResults(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>Previous</button>
-        <span>Page ${currentPage} of ${totalPages}</span>
-        <button onclick="renderResults(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>Next</button>
-    ` : '';
-}
+      const totalPages = Math.ceil(filtered.length / resultsPerPage);
+      paginationContainer.innerHTML = totalPages > 1 ? `
+        <button onclick="renderResults(${page - 1})" ${page === 1 ? 'disabled' : ''}>Prev</button>
+        <span>Page ${page} of ${totalPages}</span>
+        <button onclick="renderResults(${page + 1})" ${page === totalPages ? 'disabled' : ''}>Next</button>
+      ` : '';
+    }
 
-        function loadData() {
-            const loadDataWithFallback = (variable, type) => {
-                try {
-                    const items = window[variable] || [];
-                    return items.map(item => ({
-                        name: item.name || `Unknown ${type}`,
-                        type: type,
-                        desc: item.desc || `No ${type.toLowerCase()} description available`
-                    }));
-                } catch {
-                    return [];
-                }
-            };
+    async function loadData() {
+      const sources = [
+        { src: 'senjuLoreData', type: 'Character' },
+        { src: 'senjuUniverses', type: 'Universe' },
+        { src: 'senjuFactions', type: 'Faction' },
+        { src: 'senjuEnergyTypes', type: 'Energy' },
+        { src: 'senjuRaces', type: 'Race' }
+      ];
 
-            data = [
-                ...loadDataWithFallback('senjuLoreData', 'Character'),
-                ...loadDataWithFallback('senjuUniverses', 'Universe'),
-                ...loadDataWithFallback('senjuFactions', 'Faction'),
-                ...loadDataWithFallback('senjuEnergyTypes', 'Energy'),
-                ...loadDataWithFallback('senjuRaces', 'Race')
-            ];
+      data = sources.flatMap(({src, type}) => {
+        const items = window[src] || [];
+        return items.map(item => ({
+          name: item.name || 'Unknown',
+          desc: item.desc || 'No description available',
+          type
+        }));
+      });
 
-            fetch('../js/full_senju_character_abilities.json')
-  .then(res => res.json())
-  .then(abilities => {
-      const formattedAbilities = Object.keys(abilities).flatMap(character =>
-          abilities[character].map(ability => ({
-              name: ability.name || 'Unknown Ability',
-              type: 'Ability',
-              desc: ability.description || 'No description available',
-              character: character
+      try {
+        const res = await fetch('/js/full_senju_character_abilities.json');
+        const abilities = await res.json();
+        const formatted = Object.entries(abilities).flatMap(([char, abilities]) =>
+          abilities.map(a => ({
+            name: a.name || 'Unnamed Ability',
+            desc: a.description || 'No description available',
+            type: 'Ability',
+            character: char
           }))
-      );
-      data = [...data, ...formattedAbilities];
+        );
+        data.push(...formatted);
+      } catch (err) {
+        console.warn("Abilities failed to load", err);
+      }
+
       renderResults();
-  })
-  .catch(() => {
-      document.getElementById('resultsContainer').innerHTML = '<p class="error">Error loading abilities. Displaying available data.</p>';
-      renderResults();
-  });
-        }
-
-        const searchInput = document.getElementById('searchInput');
-        const filterSelect = document.getElementById('filterSelect');
-
-        searchInput.addEventListener('input', () => renderResults(1));
-        filterSelect.addEventListener('change', () => renderResults(1));
-
-        document.addEventListener('keydown', (e) => {
-            const results = document.querySelectorAll('.result');
-            if (!results.length) return;
-
-            if (e.key === 'ArrowDown') {
-                e.preventDefault();
-                activeIndex = (activeIndex + 1) % results.length;
-                renderResults(currentPage);
-            } else if (e.key === 'ArrowUp') {
-                e.preventDefault();
-                activeIndex = (activeIndex - 1 + results.length) % results.length;
-                renderResults(currentPage);
-            } else if (e.key === 'Enter' && activeIndex >= 0) {
-                results[activeIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-        });
-
-        window.onload = loadData;
-</script>
-
-<!-- ✅ MODAL HTML -->
-<div id="abilityModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); color:#fff; z-index:9999; padding:50px;">
-    <div style="background:#1a1a26; padding:20px; border-radius:8px; max-width:600px; margin:50px auto; position:relative;">
-        <h2 id="modalTitle"></h2>
-        <p id="modalContent"></p>
-        <button onclick="closeModal()" style="position:absolute; top:10px; right:10px; background:#ff4444; color:#fff; border:none; padding:8px 12px; cursor:pointer;">Close</button>
-    </div>
-</div>
-
-<!-- ✅ MODAL JS -->
-<script>
-    function openModal(title, desc) {
-        document.getElementById('modalTitle').innerText = title;
-        document.getElementById('modalContent').innerText = desc;
-        document.getElementById('abilityModal').style.display = 'block';
     }
 
-    function closeModal() {
-        document.getElementById('abilityModal').style.display = 'none';
-    }
-</script>
+    searchInput.addEventListener('input', () => renderResults(1));
+    filterSelect.addEventListener('change', () => renderResults(1));
+    window.onload = loadData;
+  </script>
 </body>
 </html>
