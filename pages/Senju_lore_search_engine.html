@@ -81,7 +81,7 @@
             font-size: 14px;
             margin-top: 5px;
         }
-        .no-results, .loading {
+        .no-results, .loading, .error {
             text-align: center;
             color: #cccccc;
             font-size: 18px;
@@ -127,41 +127,75 @@
             const resultsContainer = document.getElementById('resultsContainer');
             resultsContainer.innerHTML = '<p class="loading">Loading data...</p>';
 
+            // Load data from .js files with error handling
             const characters = window.senjuLoreData || [];
             const universes = window.senjuUniverses || [];
             const factions = window.senjuFactions || [];
             const energyTypes = window.senjuEnergyTypes || [];
             const races = window.senjuRaces || [];
 
+            console.log('Characters loaded:', characters.length);
+            console.log('Universes loaded:', universes.length);
+            console.log('Factions loaded:', factions.length);
+            console.log('Energy Types loaded:', energyTypes.length);
+            console.log('Races loaded:', races.length);
+
+            // Combine data with validation
             data = [
-                ...characters.map(item => ({ name: item.name || 'Unknown', type: 'Character', desc: item.desc || 'No description' })),
-                ...universes.map(item => ({ name: item.name || 'Unknown', type: 'Universe', desc: item.desc || 'No description' })),
-                ...factions.map(item => ({ name: item.name || 'Unknown', type: 'Faction', desc: item.desc || 'No description' })),
-                ...energyTypes.map(item => ({ name: item.name || 'Unknown', type: 'Energy', desc: item.desc || 'No description' })),
-                ...races.map(item => ({ name: item.name || 'Unknown', type: 'Race', desc: item.desc || 'No description' }))
+                ...characters.map(item => ({
+                    name: item.name || 'Unknown Character',
+                    type: 'Character',
+                    desc: item.desc || 'No description available'
+                })),
+                ...universes.map(item => ({
+                    name: item.name || 'Unknown Universe',
+                    type: 'Universe',
+                    desc: item.desc || 'No description available'
+                })),
+                ...factions.map(item => ({
+                    name: item.name || 'Unknown Faction',
+                    type: 'Faction',
+                    desc: item.desc || 'No description available'
+                })),
+                ...energyTypes.map(item => ({
+                    name: item.name || 'Unknown Energy',
+                    type: 'Energy',
+                    desc: item.desc || 'No description available'
+                })),
+                ...races.map(item => ({
+                    name: item.name || 'Unknown Race',
+                    type: 'Race',
+                    desc: item.desc || 'No description available'
+                }))
             ];
 
-            renderResults();
+            console.log('Initial data length:', data.length);
 
+            // Load abilities JSON
             fetch('../js/full_senju_character_abilities.json')
                 .then(response => {
-                    if (!response.ok) throw new Error(`Failed to load abilities: ${response.status}`);
+                    if (!response.ok) {
+                        throw new Error(`Failed to load abilities: ${response.status}`);
+                    }
                     return response.json();
                 })
                 .then(abilities => {
-                    const formattedAbilities = Object.keys(abilities).flatMap(character => 
+                    const formattedAbilities = Object.keys(abilities).flatMap(character =>
                         abilities[character].map(ability => ({
-                            name: ability.name || 'Unknown',
+                            name: ability.name || 'Unknown Ability',
                             type: 'Ability',
                             desc: ability.description || 'No description available',
                             character: character
                         }))
                     );
                     data = [...data, ...formattedAbilities];
+                    console.log('Abilities loaded:', formattedAbilities.length);
+                    console.log('Total data length:', data.length);
                     renderResults();
                 })
                 .catch(error => {
                     console.error('Error loading abilities:', error);
+                    resultsContainer.innerHTML = '<p class="error">Error loading abilities. Check console for details.</p>';
                     renderResults();
                 });
         }
