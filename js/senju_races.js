@@ -1,4 +1,4 @@
-const senjuRaces = [
+window.senjuRaces = [
   {
     "name": "Humans",
     "type": "Race",
