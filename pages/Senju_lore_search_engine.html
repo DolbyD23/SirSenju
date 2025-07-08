@@ -211,46 +211,56 @@
         }
 
         function renderResults(page = 1) {
-            currentPage = page;
-            activeIndex = -1;
-            const query = (searchInput.value || '').toLowerCase().trim();
-            const filter = filterSelect.value;
+    currentPage = page;
+    activeIndex = -1;
+    const query = (searchInput.value || '').toLowerCase().trim();
+    const filter = filterSelect.value;
 
-            const filteredData = data.filter(item => {
-                const name = (item.name || '').toLowerCase();
-                const desc = (item.desc || '').toLowerCase();
-                const matchesQuery = !query || fuzzyMatch(query, name) || fuzzyMatch(query, desc);
-                const matchesFilter = filter === 'All' || item.type === filter;
-                return matchesQuery && matchesFilter;
-            });
+    const filteredData = data.filter(item => {
+        const name = (item.name || '').toLowerCase();
+        const desc = (item.desc || '').toLowerCase();
+        const matchesQuery = !query || fuzzyMatch(query, name) || fuzzyMatch(query, desc);
+        const matchesFilter = filter === 'All' || item.type === filter;
+        return matchesQuery && matchesFilter;
+    });
 
-            filteredData.sort((a, b) => {
-                if (a.type === b.type) return a.name.localeCompare(b.name);
-                return a.type.localeCompare(b.type);
-            });
+    filteredData.sort((a, b) => {
+        if (a.type === b.type) return a.name.localeCompare(b.name);
+        return a.type.localeCompare(b.type);
+    });
 
-            const totalResults = filteredData.length;
-            const totalPages = Math.ceil(totalResults / resultsPerPage);
-            const startIndex = (currentPage - 1) * resultsPerPage;
-            const endIndex = startIndex + resultsPerPage;
-            const paginatedData = filteredData.slice(startIndex, endIndex);
+    const totalResults = filteredData.length;
+    const totalPages = Math.ceil(totalResults / resultsPerPage);
+    const startIndex = (currentPage - 1) * resultsPerPage;
+    const endIndex = startIndex + resultsPerPage;
+    const paginatedData = filteredData.slice(startIndex, endIndex);
 
-            resultsContainer.innerHTML = paginatedData.length > 0
-                ? paginatedData.map((item, i) => `
-                    <div class="result${i === activeIndex ? ' active' : ''}">
-                        <h3>${highlightSearchTerm(item.name, query)} (${item.type})</h3>
-                        <p>${highlightSearchTerm(item.desc, query)}</p>
-                        ${item.type === 'Ability' && item.character ? `<p class="character-link">Used by ${highlightSearchTerm(item.character, query)}</p>` : ''}
-                    </div>
-                `).join('')
-                : '<p class="no-results">No results found.</p>';
+    resultsContainer.innerHTML = paginatedData.length > 0
+        ? paginatedData.map((item, i) => {
+            const icon = getTypeIcon(item.type);
+            const typeColor = getTypeColor(item.type);
+            const characterLink = item.character
+                ? `<p class="character-link">
+                        Used by <a href="/characters/${slugify(item.character)}.html">${item.character}</a><br>
+                        <a href="/characters/${slugify(item.character)}.html" class="view-profile-link">View ${item.character}'s Profile</a>
+                   </p>`
+                : '';
 
-            paginationContainer.innerHTML = totalPages > 1 ? `
-                <button onclick="renderResults(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>Previous</button>
-                <span>Page ${currentPage} of ${totalPages}</span>
-                <button onclick="renderResults(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>Next</button>
-            ` : '';
-        }
+            return `
+                <div class="result${i === activeIndex ? ' active' : ''}" onclick="openModal('${escapeHTML(item.name)}', '${escapeHTML(item.desc)}')">
+                    <h3><span class="type-icon" style="color:${typeColor}">${icon}</span> ${highlightSearchTerm(item.name, query)} <small>(${item.type})</small></h3>
+                    <p>${highlightSearchTerm(item.desc.slice(0, 100), query)}...</p>
+                    ${characterLink}
+                </div>`;
+        }).join('')
+        : '<p class="no-results">No results found.</p>';
+
+    paginationContainer.innerHTML = totalPages > 1 ? `
+        <button onclick="renderResults(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>Previous</button>
+        <span>Page ${currentPage} of ${totalPages}</span>
+        <button onclick="renderResults(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>Next</button>
+    ` : '';
+}
 
         function loadData() {
             const loadDataWithFallback = (variable, type) => {
