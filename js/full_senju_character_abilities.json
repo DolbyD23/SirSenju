@@ -1,15 +1,16 @@
+
 {
   "Wakari Senju": [
     {
-      "name": "Energy Infusion \u2013 Full Body",
+      "name": "Energy Infusion – Full Body",
       "description": "Channels raw energy into any part of his body for explosive combat power."
     },
     {
-      "name": "Purple Surge \u2013 Inner Focus",
+      "name": "Purple Surge – Inner Focus",
       "description": "Enters a heightened energetic state where his aura amplifies all senses despite blindness."
     },
     {
-      "name": "Signature Form \u2013 Echo of the Senju",
+      "name": "Signature Form – Echo of the Senju",
       "description": "A transformation channeling ancestral martial spirits through his aura and strikes."
     },
     {
@@ -17,8 +18,8 @@
       "description": "Using vibration and energetic frequency, Wakari 'sees' the world without sight."
     },
     {
-      "name": "Rising Strike \u2013 Crescent Palm",
-      "description": "A spiritual martial technique passed down from Cartier Karo\u2019s lineage, infused with kinetic Chi."
+      "name": "Rising Strike – Crescent Palm",
+      "description": "A spiritual martial technique passed down from Cartier Karo’s lineage, infused with kinetic Chi."
     }
   ],
   "Asa Knight": [
@@ -27,11 +28,11 @@
       "description": "Generates restorative light that can mend severe wounds or revive allies from near-death."
     },
     {
-      "name": "Energetic Surge \u2013 Bloom of Resilience",
-      "description": "Asa\u2019s aura flares with pink flower petals and healing waves, enhancing her allies' stamina and focus."
+      "name": "Energetic Surge – Bloom of Resilience",
+      "description": "Asa’s aura flares with pink flower petals and healing waves, enhancing her allies' stamina and focus."
     },
     {
-      "name": "Spirit Infusion \u2013 Lotus Heart",
+      "name": "Spirit Infusion – Lotus Heart",
       "description": "A form where she bonds with an ancient spirit of light, boosting speed, light affinity, and resistance to corruption."
     },
     {
@@ -62,7 +63,7 @@
     },
     {
       "name": "Split Nexus Pulse",
-      "description": "Briefly separates the blue and purple energies into autonomous extensions of Miguel\u2019s will."
+      "description": "Briefly separates the blue and purple energies into autonomous extensions of Miguel’s will."
     }
   ],
   "Kael Ranmaru": [
@@ -71,11 +72,11 @@
       "description": "Kael vanishes in a blink and unleashes a flurry of high-speed charged strikes."
     },
     {
-      "name": "Energetic Surge \u2013 Flash Overdrive",
-      "description": "In this form, Kael\u2019s hair glows yellow and his body crackles with lightning, doubling his speed and reflexes."
+      "name": "Energetic Surge – Flash Overdrive",
+      "description": "In this form, Kael’s hair glows yellow and his body crackles with lightning, doubling his speed and reflexes."
     },
     {
-      "name": "Signature Move \u2013 Thunder Collapse",
+      "name": "Signature Move – Thunder Collapse",
       "description": "Channels lightning into the ground to erupt in a dome-shaped blast that paralyzes and scorches opponents."
     },
     {
@@ -84,7 +85,7 @@
     },
     {
       "name": "Plasma Vein Surge",
-      "description": "Temporarily converts Kael\u2019s blood into hyper-conductive plasma, causing his strikes to ignore physical resistance and leaving streaks of residual lightning that chain between targets."
+      "description": "Temporarily converts Kael’s blood into hyper-conductive plasma, causing his strikes to ignore physical resistance and leaving streaks of residual lightning that chain between targets."
     }
   ],
   "Thalon the Shadowblade": [
@@ -97,7 +98,7 @@
       "description": "Channeling water blades into martial strikes."
     },
     {
-      "name": "Surge Form \u2013 Abyssal Stalker",
+      "name": "Surge Form – Abyssal Stalker",
       "description": "Full Murkfolk energy unleash, eyes glow gold."
     },
     {
@@ -119,7 +120,7 @@
       "description": "Combines dark flame and shadow energy into an explosive barrage."
     },
     {
-      "name": "Surge Form \u2013 Abysscaller",
+      "name": "Surge Form – Abysscaller",
       "description": "Enhanced mode with flaring horn and dark mist rising from his corrupted arm."
     },
     {
@@ -137,8 +138,8 @@
       "description": "Twin energy blades that phase through armor and disrupt life energy."
     },
     {
-      "name": "Assassin\u2019s Echo",
-      "description": "Mimics opponent\u2019s last move within 1 second of witnessing it."
+      "name": "Assassin’s Echo",
+      "description": "Mimics opponent’s last move within 1 second of witnessing it."
     },
     {
       "name": "Silent Erasure",
@@ -156,1541 +157,176 @@
   "Joann Senju": [
     {
       "name": "Spirit Bloom Barrier",
-      "description": ""
+      "description": "Joann summons a radiant shield of ethereal light energy, enveloping allies in a protective dome that deflects incoming attacks and soothes wounds with gentle spiritual resonance, a hallmark of her role as the Senju matriarch."
     },
     {
       "name": "Healing Flow Technique",
-      "description": ""
+      "description": "Channels a serene stream of light energy through her hands, rapidly mending injuries and restoring vitality to allies. This technique, rooted in her mastery of emotional energy, fosters hope and resilience in battle."
     },
     {
       "name": "Ancestral Memory Pulse",
-      "description": ""
+      "description": "Emits a vibrant pulse of ethereal energy, invoking ancestral Senju spirits to inspire allies. The pulse enhances focus and morale, connecting fighters to the wisdom and strength of their lineage."
     },
     {
       "name": "Serenity Field",
-      "description": ""
+      "description": "Creates a calming field of light energy that radiates peace, reducing enemy hostility and bolstering ally defenses. Joann’s serene aura pacifies chaotic energies, making it a vital support technique."
     },
     {
       "name": "Ethereal Tide Call",
-      "description": ""
+      "description": "Summons a surging tide of ethereal energy that disrupts enemy formations. This spiritual wave, infused with light, cleanses negative effects and empowers allies with renewed vigor in combat."
     }
   ],
   "Cartier Karo": [
     {
       "name": "Crimson Impact Drive",
-      "description": ""
+      "description": "Unleashes a devastating strike infused with kinetic chi, channeling the Senju-Karo lineage’s martial prowess. The crimson energy surge delivers bone-shattering force, capable of breaking through even the toughest defenses."
     },
     {
       "name": "Bonequake Step",
-      "description": ""
+      "description": "Stomps the ground with immense force, triggering seismic tremors infused with chi energy. This technique, passed down through generations, destabilizes enemies and creates openings for Cartier’s legendary martial attacks."
     },
     {
       "name": "Karo Fist Lineage Break",
-      "description": ""
+      "description": "Delivers a powerful punch imbued with ancestral chi, shattering enemy barriers. The technique embodies the Karo family’s martial tradition, combining raw strength with spiritual energy to overwhelm foes."
     },
     {
       "name": "Pressure Pulse Cannon",
-      "description": ""
+      "description": "Fires a concentrated blast of kinetic energy, propelled by Cartier’s mastery of chi. The high-pressure pulse pierces defenses, delivering explosive impact to single targets or small groups."
     },
     {
       "name": "Guardian's Warcry",
-      "description": ""
+      "description": "Emits a commanding shout infused with chi, rallying allies and intimidating enemies. This ancestral technique boosts team morale and temporarily enhances physical strength, reflecting Cartier’s role as a protector."
     }
   ],
   "Deaengelo Senju": [
     {
       "name": "Hollow Spiral Flame",
-      "description": ""
+      "description": "Spins a vortex of dark flames, fueled by his obsession with destructive power. This chaotic energy engulfs enemies in a spiraling inferno, burning through defenses and leaving a trail of corrosive ash."
     },
     {
       "name": "Dark Chi Reversal",
-      "description": ""
+      "description": "Redirects enemy energy with dark chi, turning their attacks against them. Deaengelo’s mastery of forbidden energies allows him to manipulate and corrupt incoming forces, destabilizing opponents in combat."
     },
     {
       "name": "Vengeful Surge",
-      "description": ""
+      "description": "Unleashes a surge of dark energy, amplifying his destructive capabilities. This vengeful burst, driven by Deaengelo’s inner rage, enhances his attacks and overwhelms foes with raw, chaotic power."
     },
     {
       "name": "Shadowbrand Clutch",
-      "description": ""
+      "description": "Traps enemies in a shadowy grasp of dark energy, immobilizing them. Deaengelo’s technique brands foes with a corrosive sigil, draining their strength while bolstering his own destructive force."
     },
     {
       "name": "Nexus Breach Infusion",
-      "description": ""
+      "description": "Infuses attacks with chaotic dark energy, breaching the Nexus’s stability. Deaengelo’s forbidden technique destabilizes energy fields, amplifying his strikes with unpredictable, devastating power."
     }
   ],
   "Aman Senju": [
     {
       "name": "Whisperwind Slash",
-      "description": ""
+      "description": "Delivers a swift, precise slash infused with wind and ethereal energy. Aman’s calm precision slices through defenses, channeling natural energy to disrupt enemy formations with graceful, flowing strikes."
     },
     {
       "name": "Nature Pulse Harmonization",
-      "description": ""
+      "description": "Emits a soothing pulse of natural energy, harmonizing allies with the environment. Aman’s technique restores stamina and enhances focus, drawing strength from the earth to support his team."
     },
     {
       "name": "Chi Feedback Loop",
-      "description": ""
+      "description": "Creates a cyclical flow of chi energy, amplifying ally abilities. Aman’s technique redirects ambient energy to boost team performance, reflecting his role as a composed support fighter."
     },
     {
       "name": "Ethereal Lull",
-      "description": ""
+      "description": "Projects an ethereal aura that calms enemies and reduces aggression. Aman’s light energy technique soothes chaotic battlefields, creating openings for strategic maneuvers and ally recovery."
     },
     {
       "name": "Senju Root Technique",
-      "description": ""
+      "description": "Channels natural energy through roots, anchoring allies and disrupting foes. Aman’s technique strengthens defenses and grounds energy flows, embodying the Senju legacy of balance and resilience."
     }
   ],
   "Rina Nakamura": [
     {
       "name": "Liquid Construct Blade",
-      "description": ""
+      "description": "Forms a razor-sharp blade of water energy, slicing through defenses. Rina’s mastery of water constructs delivers precise, fluid strikes, cutting enemies with the relentless force of a rushing current."
     },
     {
       "name": "Aqua Barrier Bloom",
-      "description": ""
+      "description": "Summons a blooming shield of water energy, deflecting attacks. Rina’s defensive construct absorbs impacts and releases a soothing mist, protecting allies while maintaining her fluid combat style."
     },
     {
       "name": "Flow Pulse Cage",
-      "description": ""
+      "description": "Traps enemies in a pulsating cage of water energy, restricting movement. Rina’s technique creates a swirling vortex that confines foes, allowing allies to strike with tactical precision."
     },
     {
       "name": "Rippling Deflect",
-      "description": ""
+      "description": "Generates a rippling water energy barrier that redirects enemy attacks. Rina’s fluid defense reflects energy assaults, using the momentum of water to protect allies and disrupt opponents."
     },
     {
       "name": "Rising Wave Formation",
-      "description": ""
+      "description": "Unleashes a surging wave of water energy, overwhelming enemy lines. Rina’s technique floods the battlefield with powerful currents, pushing back foes and supporting allies with dynamic force."
     }
   ],
   "Kaito Tanaka": [
     {
       "name": "Ethereal Projection",
-      "description": ""
+      "description": "Projects an ethereal form of wind energy, confusing enemies. Kaito’s tactical technique creates a ghostly duplicate that distracts foes, allowing rapid repositioning and strategic strikes in combat."
     },
     {
       "name": "Gale Burst Dash",
-      "description": ""
+      "description": "Dashes forward with a burst of wind energy, enhancing speed. Kaito’s rapid movement creates a gale-force shockwave, knocking back enemies and setting up devastating follow-up attacks."
     },
     {
       "name": "Wind Shield Layer",
-      "description": ""
+      "description": "Forms a layered shield of wind energy, deflecting projectiles. Kaito’s defensive technique swirls air currents around allies, protecting them from attacks while maintaining his mobility."
     },
     {
       "name": "Cyclone Deflect Pulse",
-      "description": ""
+      "description": "Emits a pulsating cyclone of wind energy, redirecting assaults. Kaito’s technique creates a spinning vortex that deflects enemy attacks and disrupts their positioning on the battlefield."
     },
     {
       "name": "Updraft Combo Flurry",
-      "description": ""
+      "description": "Unleashes a flurry of wind-infused strikes, propelled by updrafts. Kaito’s rapid combo overwhelms enemies with relentless attacks, using his wind mastery to dominate aerial combat."
     }
   ],
   "Haku Sharma": [
     {
       "name": "Ember Palm Strike",
-      "description": ""
+      "description": "Delivers a fiery palm strike infused with kinetic fire energy. Haku’s tribal technique scorches enemies with explosive force, embodying his brawler spirit in devastating close-combat attacks."
     },
     {
       "name": "Kinetic Flame Barrage",
-      "description": ""
+      "description": "Unleashes a barrage of kinetic fire energy, overwhelming foes. Haku’s relentless assault rains fiery blows, combining raw power with tribal ferocity to incinerate enemy defenses."
     },
     {
       "name": "Blazing Counter",
-      "description": ""
+      "description": "Counters attacks with a sudden burst of fire energy. Haku’s technique turns enemy strikes into opportunities, enveloping assailants in flames while maintaining his aggressive combat stance."
     },
     {
       "name": "Fire Spiral Kick",
-      "description": ""
+      "description": "Spins into a fiery kick, propelled by kinetic fire energy. Haku’s tribal technique delivers a spiraling blaze, striking multiple enemies with explosive force and dynamic momentum."
     },
     {
       "name": "Pressure Chain Break",
-      "description": ""
+      "description": "Breaks enemy formations with a chain of fiery energy bursts. Haku’s technique unleashes relentless pressure, disrupting foes with kinetic flames and asserting his dominance in battle."
     }
   ],
   "Dawn Blakes": [
     {
       "name": "Thunderclash Burst",
-      "description": ""
+      "description": "Unleashes a thunderous burst of lightning and fire energy. Dawn’s nexus-level power electrifies and incinerates foes, creating a devastating explosion that showcases her unmatched elemental prowess."
     },
     {
       "name": "Ember Lance Drive",
-      "description": ""
+      "description": "Thrusts a lance of fire energy, charged with lightning. Dawn’s technique pierces defenses with searing precision, combining fiery intensity and electric force to overwhelm her opponents."
     },
     {
       "name": "Surge Ignition Overload",
-      "description": ""
+      "description": "Triggers an overload of fire and lightning energy, devastating enemies. Dawn’s surge creates a chaotic blast, amplifying her nexus-level power to dominate the battlefield with elemental fury."
     },
     {
       "name": "Sparkblade Reversal",
-      "description": ""
+      "description": "Counters with a spark-infused blade of fire energy. Dawn’s technique redirects enemy attacks, slashing with electrified flames to turn the tide of battle in her favor."
     },
     {
       "name": "Phoenix Arc Discharge",
-      "description": ""
-    }
-  ],
-  "Selara Veyune": [
-    {
-      "name": "Waltz of the Soaring Bloom",
-      "description": ""
+      "description": "Releases an arc of phoenix-like fire and lightning energy. Dawn’s technique engulfs enemies in a radiant discharge, reviving her resolve while scorching foes with elemental power."
     },
-    {
-      "name": "Petalburst Shield",
-      "description": ""
-    },
-    {
-      "name": "Galeveil Embrace",
-      "description": ""
-    },
-    {
-      "name": "Ultraviolet Bloom Ray",
-      "description": ""
-    },
-    {
-      "name": "Skyward Dancer\u2019s Pulse",
-      "description": ""
-    }
-  ],
-  "Xor\u2019Zen": [
-    {
-      "name": "Voidstep Break",
-      "description": ""
-    },
-    {
-      "name": "Silencing Hammer Fist",
-      "description": ""
-    },
-    {
-      "name": "Boneguard Counterhold",
-      "description": ""
-    },
-    {
-      "name": "Iron Clasp Slam",
-      "description": ""
-    },
-    {
-      "name": "Titan\u2019s Grasp Lockdown",
-      "description": ""
-    }
-  ],
-  "Faelix": [
-    {
-      "name": "Plaguewhisper Hex",
-      "description": ""
-    },
-    {
-      "name": "Tongue Lash Venom",
-      "description": ""
-    },
-    {
-      "name": "Miasma Spread Ritual",
-      "description": ""
-    },
-    {
-      "name": "Corpse Echo Infliction",
-      "description": ""
-    },
-    {
-      "name": "Rot Bloom",
-      "description": ""
-    }
-  ],
-  "Veyra": [
-    {
-      "name": "Siren\u2019s Dissonance",
-      "description": ""
-    },
-    {
-      "name": "Void Aria",
-      "description": ""
-    },
-    {
-      "name": "Eclipsing Note Mirage",
-      "description": ""
-    },
-    {
-      "name": "Abyssal Choir Trap",
-      "description": ""
-    },
-    {
-      "name": "Voice of Madness",
-      "description": ""
-    }
-  ],
-  "Morrow": [
-    {
-      "name": "Null Zone Collapse",
-      "description": ""
-    },
-    {
-      "name": "Energy Disruption Veil",
-      "description": ""
-    },
-    {
-      "name": "Deadspace Phase",
-      "description": ""
-    },
-    {
-      "name": "Silence Break",
-      "description": ""
-    },
-    {
-      "name": "Void Echo Detachment",
-      "description": ""
-    }
-  ],
-  "Elara": [
-    {
-      "name": "Infernal Twin Strike",
-      "description": ""
-    },
-    {
-      "name": "Crimson Vortex Leap",
-      "description": ""
-    },
-    {
-      "name": "Ember Crash Guard",
-      "description": ""
-    },
-    {
-      "name": "Darkflame Combustion",
-      "description": ""
-    },
-    {
-      "name": "Field Breaker Howl",
-      "description": ""
-    }
-  ],
-  "Kaelor": [
-    {
-      "name": "Strategy Grid Deployment",
-      "description": ""
-    },
-    {
-      "name": "Mental Pulse Disruptor",
-      "description": ""
-    },
-    {
-      "name": "Reinforcement Barrier",
-      "description": ""
-    },
-    {
-      "name": "Thought Trap Relay",
-      "description": ""
-    },
-    {
-      "name": "Precision Null Zone",
-      "description": ""
-    }
-  ],
-  "Tressia": [
-    {
-      "name": "Phantom Nerve Thread",
-      "description": ""
-    },
-    {
-      "name": "Mistwalk Passage",
-      "description": ""
-    },
-    {
-      "name": "Silent Pulse Break",
-      "description": ""
-    },
-    {
-      "name": "Disrupt Veil Implosion",
-      "description": ""
-    },
-    {
-      "name": "Fadepoint Mark",
-      "description": ""
-    }
-  ],
-  "Giren": [
-    {
-      "name": "Hunter\u2019s Echo",
-      "description": ""
-    },
-    {
-      "name": "Vein Scent Burst",
-      "description": ""
-    },
-    {
-      "name": "Bone Dart Scream",
-      "description": ""
-    },
-    {
-      "name": "Howl Mute Zone",
-      "description": ""
-    },
-    {
-      "name": "Pounce Latch Breaker",
-      "description": ""
-    }
-  ],
-  "Brakka\u2019Nul": [
-    {
-      "name": "Pulse Drain",
-      "description": ""
-    },
-    {
-      "name": "Energy Maw Lunge",
-      "description": ""
-    },
-    {
-      "name": "Core Overload Burst",
-      "description": ""
-    },
-    {
-      "name": "Adaptive Echo Shift",
-      "description": ""
-    },
-    {
-      "name": "Predator Lockdown",
-      "description": ""
-    }
-  ],
-  "Daiko": [
-    {
-      "name": "Abyssal Blaze Surge",
-      "description": ""
-    },
-    {
-      "name": "Chainfire Entombment",
-      "description": ""
-    },
-    {
-      "name": "Forbidden Flame Seal",
-      "description": ""
-    },
-    {
-      "name": "Wrath Pyre Cataclysm",
-      "description": ""
-    },
-    {
-      "name": "Dark Embers Rebirth",
-      "description": ""
-    }
-  ],
-  "Emiko Knight": [
-    {
-      "name": "Petal Soothing Aura",
-      "description": ""
-    },
-    {
-      "name": "Chi Restoration Bloom",
-      "description": ""
-    },
-    {
-      "name": "Wind Whisper Guidance",
-      "description": ""
-    },
-    {
-      "name": "Harmonic Resolve",
-      "description": ""
-    },
-    {
-      "name": "Heartstream Field",
-      "description": ""
-    }
-  ],
-  "Kaelith Darien": [
-    {
-      "name": "Thunderbrand Surge",
-      "description": ""
-    },
-    {
-      "name": "Stormheart Invocation",
-      "description": ""
-    },
-    {
-      "name": "Static Guard",
-      "description": ""
-    },
-    {
-      "name": "Chain Lightning Arc",
-      "description": ""
-    },
-    {
-      "name": "Lightning Field Collapse",
-      "description": ""
-    }
-  ],
-  "Myssira of the Fifth Spine": [
-    {
-      "name": "Serpent Sigil Lance",
-      "description": ""
-    },
-    {
-      "name": "Fifth Spine Paralysis",
-      "description": ""
-    },
-    {
-      "name": "Arcane Venomburst",
-      "description": ""
-    },
-    {
-      "name": "Scale Hex Surge",
-      "description": ""
-    },
-    {
-      "name": "Poisoned Halo Veil",
-      "description": ""
-    }
-  ],
-  "Zaryk the Tailbreaker": [
-    {
-      "name": "Tailbreaker Smash",
-      "description": ""
-    },
-    {
-      "name": "Groundsplitter Charge",
-      "description": ""
-    },
-    {
-      "name": "Earthquake Roar",
-      "description": ""
-    },
-    {
-      "name": "Iron Spine Slam",
-      "description": ""
-    },
-    {
-      "name": "Shatterquake Momentum",
-      "description": ""
-    }
-  ],
-  "Dronak": [
-    {
-      "name": "Reaper\u2019s Guillotine",
-      "description": ""
-    },
-    {
-      "name": "Iron Wall Sweep",
-      "description": ""
-    },
-    {
-      "name": "Crushing Blade Lock",
-      "description": ""
-    },
-    {
-      "name": "Execution Surge",
-      "description": ""
-    },
-    {
-      "name": "Ruststorm Slam",
-      "description": ""
-    }
-  ],
-  "Lysar": [
-    {
-      "name": "Rift Slash",
-      "description": ""
-    },
-    {
-      "name": "Dimensional Fade",
-      "description": ""
-    },
-    {
-      "name": "Tearstep Ambush",
-      "description": ""
-    },
-    {
-      "name": "Void Tunnel Pierce",
-      "description": ""
-    },
-    {
-      "name": "Spatial Break Seal",
-      "description": ""
-    }
-  ],
-  "Serin Vale": [
-    {
-      "name": "Astral Rift Echo",
-      "description": ""
-    },
-    {
-      "name": "Skyseer\u2019s Reflection",
-      "description": ""
-    },
-    {
-      "name": "Rune Bind Barrier",
-      "description": ""
-    },
-    {
-      "name": "Cosmic Projection Thread",
-      "description": ""
-    },
-    {
-      "name": "Aetherlink Gaze",
-      "description": ""
-    }
-  ],
-  "Kravonn Drex": [
-    {
-      "name": "Tideveil Strike",
-      "description": ""
-    },
-    {
-      "name": "Murkstep Ambush",
-      "description": ""
-    },
-    {
-      "name": "Coral Dagger Lunge",
-      "description": ""
-    },
-    {
-      "name": "Drownpulse Sweep",
-      "description": ""
-    },
-    {
-      "name": "Abyss Blink Dash",
-      "description": ""
-    }
-  ],
-  "Nyara Quen": [
-    {
-      "name": "Ember Pulse Shot",
-      "description": ""
-    },
-    {
-      "name": "Radiant Clip Reload",
-      "description": ""
-    },
-    {
-      "name": "Thermal Flashblind",
-      "description": ""
-    },
-    {
-      "name": "Precision Burn Arc",
-      "description": ""
-    },
-    {
-      "name": "Flame Lock Target",
-      "description": ""
-    }
-  ],
-  "Telynn Vesh": [
-    {
-      "name": "Prismwall Guard",
-      "description": ""
-    },
-    {
-      "name": "Reflective Pulse Blade",
-      "description": ""
-    },
-    {
-      "name": "Shardburst Counter",
-      "description": ""
-    },
-    {
-      "name": "Gleam Aegis",
-      "description": ""
-    },
-    {
-      "name": "Crystal Dome Encapsulate",
-      "description": ""
-    }
-  ],
-  "Sorn": [
-    {
-      "name": "Echo Trace",
-      "description": ""
-    },
-    {
-      "name": "Badge Recall Pulse",
-      "description": ""
-    },
-    {
-      "name": "Sensory Cloak Trail",
-      "description": ""
-    },
-    {
-      "name": "Kinetic Pinpoint Blast",
-      "description": ""
-    },
-    {
-      "name": "Marked Target Pulse",
-      "description": ""
-    }
-  ],
-  "Warden Halek": [
-    {
-      "name": "Vault Chain Seal",
-      "description": ""
-    },
-    {
-      "name": "Null Aura Shackle",
-      "description": ""
-    },
-    {
-      "name": "Dimension Halt Ward",
-      "description": ""
-    },
-    {
-      "name": "Echo Suppression Field",
-      "description": ""
-    },
-    {
-      "name": "Warden's Oath Lock",
-      "description": ""
-    }
-  ],
-  "Roan Kelvar": [
-    {
-      "name": "Starbrand Sniper Round",
-      "description": ""
-    },
-    {
-      "name": "Ironsight Lock-On",
-      "description": ""
-    },
-    {
-      "name": "Marshal\u2019s Judgement",
-      "description": ""
-    },
-    {
-      "name": "Ricochet Blast",
-      "description": ""
-    },
-    {
-      "name": "Kinetic Round Delay",
-      "description": ""
-    }
-  ],
-  "Mysa Quell": [
-    {
-      "name": "Psi-Lash Entangle",
-      "description": ""
-    },
-    {
-      "name": "Mind Echo Whip",
-      "description": ""
-    },
-    {
-      "name": "Neural Disrupt Pulse",
-      "description": ""
-    },
-    {
-      "name": "Lash Reversal Zone",
-      "description": ""
-    },
-    {
-      "name": "Psychic Slam Hold",
-      "description": ""
-    }
-  ],
-  "Redd Vox": [
-    {
-      "name": "Vox Cannon Burst",
-      "description": ""
-    },
-    {
-      "name": "Pulse Bunker Blast",
-      "description": ""
-    },
-    {
-      "name": "Arm Surge Detonation",
-      "description": ""
-    },
-    {
-      "name": "Kinetic Quake Grenade",
-      "description": ""
-    },
-    {
-      "name": "Heavy Barrage Cycle",
-      "description": ""
-    }
-  ],
-  "Kaito Knight": [
-    {
-      "name": "Radiant Ember Fist",
-      "description": ""
-    },
-    {
-      "name": "Solar Warden Stance",
-      "description": ""
-    },
-    {
-      "name": "Phoenix Reversal",
-      "description": ""
-    },
-    {
-      "name": "Spirit Infusion \u2013 Luminous Flame",
-      "description": ""
-    },
-    {
-      "name": "Essence Echo \u2013 Eternal Vigil",
-      "description": ""
-    }
-  ],
-  "Vharzor the Incinerant": [
-    {
-      "name": "Infernal Eruption",
-      "description": ""
-    },
-    {
-      "name": "Abyssfire Mantle",
-      "description": ""
-    },
-    {
-      "name": "Cataclysm Pulse",
-      "description": ""
-    },
-    {
-      "name": "Incinerant Vow",
-      "description": ""
-    },
-    {
-      "name": "Devourer\u2019s Pyre",
-      "description": ""
-    }
-  ],
-  "Mal\u2019Zhuran the Blacktongue": [
-    {
-      "name": "Virulent Spiral",
-      "description": ""
-    },
-    {
-      "name": "Blacktongue\u2019s Whisper",
-      "description": ""
-    },
-    {
-      "name": "Pestilent Marionette",
-      "description": ""
-    },
-    {
-      "name": "Hollow Bloom",
-      "description": ""
-    },
-    {
-      "name": "Plague Requiem",
-      "description": ""
-    }
-  ],
-  "Lyra Moonshadow": [
-    {
-      "name": "Soothing Pulse Halo",
-      "description": ""
-    },
-    {
-      "name": "Lunar Restoration",
-      "description": ""
-    },
-    {
-      "name": "Empathic Ward",
-      "description": ""
-    },
-    {
-      "name": "Starflow Aura Rebind",
-      "description": ""
-    },
-    {
-      "name": "Echo of the Lost Light",
-      "description": ""
-    }
-  ],
-  "Fenix Brightflame": [
-    {
-      "name": "Burning Fist Surge",
-      "description": ""
-    },
-    {
-      "name": "Ember Wake Counter",
-      "description": ""
-    },
-    {
-      "name": "Flame Spiral Burst",
-      "description": ""
-    },
-    {
-      "name": "Crimson Fury Wave",
-      "description": ""
-    },
-    {
-      "name": "Inner Spark Explosion",
-      "description": ""
-    }
-  ],
-  "Zorakai the Lightning Warden": [
-    {
-      "name": "Skybrand Surge",
-      "description": ""
-    },
-    {
-      "name": "Storm Sentinel Form",
-      "description": ""
-    },
-    {
-      "name": "Warden's Judgment Bolt",
-      "description": ""
-    },
-    {
-      "name": "Static Field Cage",
-      "description": ""
-    },
-    {
-      "name": "Thunderfall Reckoning",
-      "description": ""
-    }
-  ],
-  "Elarra Valen": [
-    {
-      "name": "Sky Petal Waltz",
-      "description": ""
-    },
-    {
-      "name": "Lumina Glide Veil",
-      "description": ""
-    },
-    {
-      "name": "Soaring Ribbon Pulse",
-      "description": ""
-    },
-    {
-      "name": "Cyclone Bloom Step",
-      "description": ""
-    },
-    {
-      "name": "Luminous Spiral Cut",
-      "description": ""
-    }
-  ],
-  "Xandria the Harbinger of Ruin": [
-    {
-      "name": "Fracture Zone",
-      "description": ""
-    },
-    {
-      "name": "Reality Rend Spiral",
-      "description": ""
-    },
-    {
-      "name": "Oblivion Stitch",
-      "description": ""
-    },
-    {
-      "name": "Cataclysm Bloom",
-      "description": ""
-    },
-    {
-      "name": "Ruinbind Collapse",
-      "description": ""
-    }
-  ],
-  "Kira the Manipulator": [
-    {
-      "name": "Mind Mirage Loop",
-      "description": ""
-    },
-    {
-      "name": "Reflective Curse Bloom",
-      "description": ""
-    },
-    {
-      "name": "Cognitive Lockdown",
-      "description": ""
-    },
-    {
-      "name": "False World Weave",
-      "description": ""
-    },
-    {
-      "name": "Soulveil Shatter",
-      "description": ""
-    }
-  ],
-  "Lord Nihilus": [
-    {
-      "name": "Event Collapse Surge",
-      "description": ""
-    },
-    {
-      "name": "Void Dominion Field",
-      "description": ""
-    },
-    {
-      "name": "Nihility Crown",
-      "description": ""
-    },
-    {
-      "name": "Singularity Descent",
-      "description": ""
-    },
-    {
-      "name": "Black Breach Authority",
-      "description": ""
-    }
-  ],
-  "Proto-X": [
-    {
-      "name": "Core Overload Burst",
-      "description": ""
-    },
-    {
-      "name": "Adaptive Counter-Rotation",
-      "description": ""
-    },
-    {
-      "name": "Kinetic Reforge Protocol",
-      "description": ""
-    },
-    {
-      "name": "Echo Frame Mimic",
-      "description": ""
-    },
-    {
-      "name": "Fusion Core Override",
-      "description": ""
-    }
-  ],
-  "Vanta-02": [
-    {
-      "name": "Cloak Veil",
-      "description": ""
-    },
-    {
-      "name": "Null Pulse Disruptor",
-      "description": ""
-    },
-    {
-      "name": "Phasing Slash",
-      "description": ""
-    },
-    {
-      "name": "Optic Jam Field",
-      "description": ""
-    },
-    {
-      "name": "Silent Frame Reset",
-      "description": ""
-    }
-  ],
-  "Giga": [
-    {
-      "name": "Hyper Impact Slam",
-      "description": ""
-    },
-    {
-      "name": "Reinforced Shock Core",
-      "description": ""
-    },
-    {
-      "name": "Groundquake Punch",
-      "description": ""
-    },
-    {
-      "name": "Kinetic Absorption Plate",
-      "description": ""
-    },
-    {
-      "name": "Unstoppable Drive",
-      "description": ""
-    }
-  ],
-  "Silken": [
-    {
-      "name": "Thread Bind",
-      "description": ""
-    },
-    {
-      "name": "Echo Thought Link",
-      "description": ""
-    },
-    {
-      "name": "Phase Filament Cloak",
-      "description": ""
-    },
-    {
-      "name": "Neuro-Weave Entrap",
-      "description": ""
-    },
-    {
-      "name": "Mirage Pulse Veil",
-      "description": ""
-    }
-  ],
-  "Scythe-Walker": [
-    {
-      "name": "Twin Scythe Execution",
-      "description": ""
-    },
-    {
-      "name": "Blade Phase Shift",
-      "description": ""
-    },
-    {
-      "name": "Guillotine Dash",
-      "description": ""
-    },
-    {
-      "name": "Neural Decap Strike",
-      "description": ""
-    },
-    {
-      "name": "Target Mark Cascade",
-      "description": ""
-    }
-  ],
-  "Nebula-06": [
-    {
-      "name": "Starpiercer Beam",
-      "description": ""
-    },
-    {
-      "name": "Anti-Gravity Maneuvering",
-      "description": ""
-    },
-    {
-      "name": "Stealth Altitude Shift",
-      "description": ""
-    },
-    {
-      "name": "Velocity Drift Shell",
-      "description": ""
-    },
-    {
-      "name": "Comet Trace Lock-On",
-      "description": ""
-    }
-  ],
-  "Venmire": [
-    {
-      "name": "Corruptive Lash",
-      "description": ""
-    },
-    {
-      "name": "Viral Pulse Breach",
-      "description": ""
-    },
-    {
-      "name": "Decay Protocol Bloom",
-      "description": ""
-    },
-    {
-      "name": "Neurospike Transmit",
-      "description": ""
-    },
-    {
-      "name": "Contagion Overload",
-      "description": ""
-    }
-  ],
-  "Shardhelm": [
-    {
-      "name": "Prism Reflect Shell",
-      "description": ""
-    },
-    {
-      "name": "Deflective Charge Wall",
-      "description": ""
-    },
-    {
-      "name": "Kinetic Backlash Armor",
-      "description": ""
-    },
-    {
-      "name": "Reflect Pulse Surge",
-      "description": ""
-    },
-    {
-      "name": "Mirrorfield Collapse",
-      "description": ""
-    }
-  ],
-  "Delta Howl": [
-    {
-      "name": "Sonic Fang Burst",
-      "description": ""
-    },
-    {
-      "name": "Echowave Pounce",
-      "description": ""
-    },
-    {
-      "name": "Frequency Disorient",
-      "description": ""
-    },
-    {
-      "name": "Screech Zone Lock",
-      "description": ""
-    },
-    {
-      "name": "Howl Resonance Break",
-      "description": ""
-    }
-  ],
-  "Crux Omega": [
-    {
-      "name": "Terminal Core Blast",
-      "description": ""
-    },
-    {
-      "name": "Omega Nullification",
-      "description": ""
-    },
-    {
-      "name": "Crux Lockdown Zone",
-      "description": ""
-    },
-    {
-      "name": "Annihilation Surge",
-      "description": ""
-    },
-    {
-      "name": "System Shutdown Howl",
-      "description": ""
-    }
-  ],
-  "Seraph-X": [
-    {
-      "name": "Seraphic Descent",
-      "description": ""
-    },
-    {
-      "name": "Wingflare Pulse",
-      "description": ""
-    },
-    {
-      "name": "Celestial Echo Barrage",
-      "description": ""
-    },
-    {
-      "name": "Halo Seal Spear",
-      "description": ""
-    },
-    {
-      "name": "Ascension Storm Code",
-      "description": ""
-    }
-  ],
-  "Ashcore": [
-    {
-      "name": "Magma Slam Barrage",
-      "description": ""
-    },
-    {
-      "name": "Ashwave Detonation",
-      "description": ""
-    },
-    {
-      "name": "Volcanic Core Charge",
-      "description": ""
-    },
-    {
-      "name": "Obsidian Fist Cannon",
-      "description": ""
-    },
-    {
-      "name": "Eruption Ground Crush",
-      "description": ""
-    }
-  ],
-  "Noir Vanta": [
-    {
-      "name": "Vanta Pulse Blade",
-      "description": ""
-    },
-    {
-      "name": "Blackout Protocol",
-      "description": ""
-    },
-    {
-      "name": "Shadow Data Spike",
-      "description": ""
-    },
-    {
-      "name": "Veil Merge Technique",
-      "description": ""
-    },
-    {
-      "name": "Cloak Re-entry",
-      "description": ""
-    }
-  ],
-  "Pulse-Sync": [
-    {
-      "name": "Sync Dash Protocol",
-      "description": ""
-    },
-    {
-      "name": "Neuro-Jolt Overload",
-      "description": ""
-    },
-    {
-      "name": "Accel Reboot",
-      "description": ""
-    },
-    {
-      "name": "Data Surge Reflex",
-      "description": ""
-    },
-    {
-      "name": "Phase Pulse Barrage",
-      "description": ""
-    }
-  ],
-  "Cipher-Zenith": [
-    {
-      "name": "Omni-Core Drive",
-      "description": ""
-    },
-    {
-      "name": "Absolute Recall",
-      "description": ""
-    },
-    {
-      "name": "Zenith Break",
-      "description": ""
-    },
-    {
-      "name": "Multi-Type Shift",
-      "description": ""
-    },
-    {
-      "name": "Core Sync Override",
-      "description": ""
-    }
-  ],
-  "Aurora": [
-    {
-      "name": "Radiant Ascension",
-      "description": ""
-    },
-    {
-      "name": "Dawnbloom Rebirth",
-      "description": ""
-    },
-    {
-      "name": "Lightwave Benediction",
-      "description": ""
-    },
-    {
-      "name": "Celestial Flare Wreath",
-      "description": ""
-    },
-    {
-      "name": "Horizon Veil Pulse",
-      "description": ""
-    }
-  ],
-  "Nox": [
-    {
-      "name": "Dreamveil Embrace",
-      "description": ""
-    },
-    {
-      "name": "Midnight Crown",
-      "description": ""
-    },
-    {
-      "name": "Twilight Invocation",
-      "description": ""
-    },
-    {
-      "name": "Umbra Shroud Pulse",
-      "description": ""
-    },
-    {
-      "name": "Ebon Radiance",
-      "description": ""
-    }
-  ],
-  "Oblivion": [
-    {
-      "name": "Entropic Collapse",
-      "description": ""
-    },
-    {
-      "name": "Oblivion Wake",
-      "description": ""
-    },
-    {
-      "name": "Core Unraveling",
-      "description": ""
-    },
-    {
-      "name": "Absolute Ruin",
-      "description": ""
-    },
-    {
-      "name": "Final Dusk Surge",
-      "description": ""
-    }
-  ],
-  "Elysia": [
-    {
-      "name": "Genesis Pulse",
-      "description": ""
-    },
-    {
-      "name": "Cradle of Stars",
-      "description": ""
-    },
-    {
-      "name": "Formweaver Cascade",
-      "description": ""
-    },
-    {
-      "name": "Lifesurge Convergence",
-      "description": ""
-    },
-    {
-      "name": "Birthsong Horizon",
-      "description": ""
-    }
-  ],
-  "Pyrax": [
-    {
-      "name": "Blazing Dominion",
-      "description": ""
-    },
-    {
-      "name": "Flamewake Crown",
-      "description": ""
-    },
-    {
-      "name": "Corefire Roar",
-      "description": ""
-    },
-    {
-      "name": "Infernal Monarch\u2019s Decree",
-      "description": ""
-    },
-    {
-      "name": "Emberfall Cataclysm",
-      "description": ""
-    }
-  ],
-  "Aquara": [
-    {
-      "name": "Tidecaller Grace",
-      "description": ""
-    },
-    {
-      "name": "Oceanic Embrace",
-      "description": ""
-    },
-    {
-      "name": "Hydrosurge Ward",
-      "description": ""
-    },
-    {
-      "name": "Deep Current Bind",
-      "description": ""
-    },
-    {
-      "name": "Eternal Flow",
-      "description": ""
-    }
-  ],
-  "Ruin": [
-    {
-      "name": "Collapse Hymn",
-      "description": ""
-    },
-    {
-      "name": "Mourning Wave",
-      "description": ""
-    },
-    {
-      "name": "Witherbind Spiral",
-      "description": ""
-    },
-    {
-      "name": "Grave Silence Pulse",
-      "description": ""
-    },
-    {
-      "name": "Despair Bloom Crown",
-      "description": ""
-    }
-  ],
-  "Umbros": [
-    {
-      "name": "Shadowveil Tyranny",
-      "description": ""
-    },
-    {
-      "name": "Abyssal Grasp",
-      "description": ""
-    },
-    {
-      "name": "Fear Torrent",
-      "description": ""
-    },
-    {
-      "name": "Voidstep Dominion",
-      "description": ""
-    },
-    {
-      "name": "Umbral Crown Descent",
-      "description": ""
-    }
-  ],
-  "Aetherion": [
-    {
-      "name": "Nexus Stabilizer",
-      "description": ""
-    },
-    {
-      "name": "Harmonic Convergence",
-      "description": ""
-    },
-    {
-      "name": "Pulse of Equilibrium",
-      "description": ""
-    },
-    {
-      "name": "Aether Chain Reflection",
-      "description": ""
-    },
-    {
-      "name": "Unity Requiem",
-      "description": ""
-    }
-  ],
-  "Vigilus": [
-    {
-      "name": "Chrono Reversal",
-      "description": ""
-    },
-    {
-      "name": "Temporal Lock",
-      "description": ""
-    },
-    {
-      "name": "Infinite Echo",
-      "description": ""
-    },
-    {
-      "name": "Timewalker's Oath",
-      "description": ""
-    },
-    {
-      "name": "Celestial Pause",
-      "description": ""
-    }
-  ],
-  "The Arbiter": [
-    {
-      "name": "Edict of Balance",
-      "description": ""
-    },
-    {
-      "name": "Total Reversal",
-      "description": ""
-    },
-    {
-      "name": "Astral Judgement",
-      "description": ""
-    },
-    {
-      "name": "Nexus Seal",
-      "description": ""
-    },
-    {
-      "name": "Origin Pulse Collapse",
-      "description": ""
-    }
-  ]
-}
+    
