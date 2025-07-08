@@ -1,4 +1,4 @@
-window.fullCharacterAbilities = {
+window.fullcharacterabilities = {
   "Wakari Senju": [
     {
       "name": "Energy Infusion – Full Body",
