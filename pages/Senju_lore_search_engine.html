@@ -198,42 +198,42 @@
       ` : '';
     }
 
-    async function loadData() {
-      const sources = [
-        { src: 'senjuLoreData', type: 'Character' },
-        { src: 'senjuUniverses', type: 'Universe' },
-        { src: 'senjuFactions', type: 'Faction' },
-        { src: 'senjuEnergyTypes', type: 'Energy' },
-        { src: 'senjuRaces', type: 'Race' }
-      ];
+    function loadData() {
+    const loadDataWithFallback = (variable, type) => {
+        try {
+            const items = window[variable] || [];
+            return items.map(item => ({
+                name: item.name || `Unknown ${type}`,
+                type: type,
+                desc: item.desc || `No ${type.toLowerCase()} description available`
+            }));
+        } catch {
+            return [];
+        }
+    };
 
-      data = sources.flatMap(({src, type}) => {
-        const items = window[src] || [];
-        return items.map(item => ({
-          name: item.name || 'Unknown',
-          desc: item.desc || 'No description available',
-          type
-        }));
-      });
+    data = [
+        ...loadDataWithFallback('senjuLoreData', 'Character'),
+        ...loadDataWithFallback('senjuUniverses', 'Universe'),
+        ...loadDataWithFallback('senjuFactions', 'Faction'),
+        ...loadDataWithFallback('senjuEnergyTypes', 'Energy'),
+        ...loadDataWithFallback('senjuRaces', 'Race')
+    ];
 
-      try {
-        const res = await fetch('../js/full_senju_character_abilities.json');
-        const abilities = await res.json();
-        const formatted = Object.entries(abilities).flatMap(([char, abilities]) =>
-          abilities.map(a => ({
-            name: a.name || 'Unnamed Ability',
-            desc: a.description || 'No description available',
+    // ✅ Load Abilities from JS file version
+    const abilities = window.fullcharacterabilities || {};
+    const formattedAbilities = Object.keys(abilities).flatMap(character =>
+        abilities[character].map(ability => ({
+            name: ability.name || 'Unknown Ability',
             type: 'Ability',
-            character: char
-          }))
-        );
-        data.push(...formatted);
-      } catch (err) {
-        console.warn("Abilities failed to load", err);
-      }
+            desc: ability.description || 'No description available',
+            character: character
+        }))
+    );
 
-      renderResults();
-    }
+    data = [...data, ...formattedAbilities];
+    renderResults();
+}
 
     searchInput.addEventListener('input', () => renderResults(1));
     filterSelect.addEventListener('change', () => renderResults(1));
