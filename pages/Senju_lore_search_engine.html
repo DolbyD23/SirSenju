@@ -81,7 +81,7 @@
             font-size: 14px;
             margin-top: 5px;
         }
-        .no-results, .loading, .error {
+        .no-results, .error {
             text-align: center;
             color: #cccccc;
             font-size: 18px;
@@ -112,7 +112,7 @@
         </select>
     </div>
     <div class="results" id="resultsContainer">
-        <p class="loading">Loading data...</p>
+        <p class="no-results">Enter a search term to see results.</p>
     </div>
 
     <script src="../js/senju_characters_FULL.js"></script>
@@ -122,11 +122,8 @@
     <script src="../js/senju_races.js"></script>
     <script>
         let data = [];
-        const resultsContainer = document.getElementById('resultsContainer');
 
         function loadData() {
-            resultsContainer.innerHTML = '<p class="loading">Loading data...</p>';
-
             // Load .js files with error handling
             const loadDataWithFallback = (variable, type) => {
                 try {
@@ -144,34 +141,21 @@
             };
 
             // Load data from .js files
-            const characters = loadDataWithFallback('senjuLoreData', 'Character');
-            const universes = loadDataWithFallback('senjuUniverses', 'Universe');
-            const factions = loadDataWithFallback('senjuFactions', 'Faction');
-            const energyTypes = loadDataWithFallback('senjuEnergyTypes', 'Energy');
-            const races = loadDataWithFallback('senjuRaces', 'Race');
-
-            // Combine initial data
-            data = [...characters, ...universes, ...factions, ...energyTypes, ...races];
+            data = [
+                ...loadDataWithFallback('senjuLoreData', 'Character'),
+                ...loadDataWithFallback('senjuUniverses', 'Universe'),
+                ...loadDataWithFallback('senjuFactions', 'Faction'),
+                ...loadDataWithFallback('senjuEnergyTypes', 'Energy'),
+                ...loadDataWithFallback('senjuRaces', 'Race')
+            ];
             console.log('Initial data length (without abilities):', data.length);
 
-            // Load abilities JSON with timeout
-            const fetchTimeout = (url, ms) => {
-                const controller = new AbortController();
-                const signal = controller.signal;
-                const timeout = setTimeout(() => controller.abort(), ms);
-                return fetch(url, { signal })
-                    .then(response => {
-                        clearTimeout(timeout);
-                        if (!response.ok) throw new Error(`Failed to load ${url}: ${response.status}`);
-                        return response.json();
-                    })
-                    .catch(error => {
-                        clearTimeout(timeout);
-                        throw error;
-                    });
-            };
-
-            fetchTimeout('../js/full_senju_character_abilities.json', 5000)
+            // Load abilities JSON
+            fetch('../js/full_senju_character_abilities.json')
+                .then(response => {
+                    if (!response.ok) throw new Error(`Failed to load abilities: ${response.status}`);
+                    return response.json();
+                })
                 .then(abilities => {
                     const formattedAbilities = Object.keys(abilities).flatMap(character =>
                         abilities[character].map(ability => ({
@@ -188,13 +172,13 @@
                 })
                 .catch(error => {
                     console.error('Error loading abilities:', error);
-                    resultsContainer.innerHTML = '<p class="error">Error loading abilities. Displaying available data. Check console for details.</p>';
-                    renderResults();
+                    renderResults(); // Render available data even if abilities fail
                 });
         }
 
         const searchInput = document.getElementById('searchInput');
         const filterSelect = document.getElementById('filterSelect');
+        const resultsContainer = document.getElementById('resultsContainer');
 
         function escapeHTML(str) {
             return str.replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>').replace(/"/g, '"').replace(/'/g, ''');
