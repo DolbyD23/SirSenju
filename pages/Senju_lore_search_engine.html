@@ -123,11 +123,11 @@
   <div class="pagination" id="paginationContainer"></div>
 
   <!-- JSON + JS Data Files -->
-  <script src="/js/senju_characters_FULL.js" defer></script>
-  <script src="/js/senju_universes.js" defer></script>
-  <script src="/js/senju_factions.js" defer></script>
-  <script src="/js/senju_energy_types.js" defer></script>
-  <script src="/js/senju_races.js" defer></script>
+  <script src="../js/senju_characters_FULL.js" defer></script>
+  <script src="../js/senju_universes.js" defer></script>
+  <script src="../js/senju_factions.js" defer></script>
+  <script src="../js/senju_energy_types.js" defer></script>
+  <script src="../js/senju_races.js" defer></script>
 
   <script>
     const searchInput = document.getElementById('searchInput');
@@ -216,7 +216,7 @@
       });
 
       try {
-        const res = await fetch('/js/full_senju_character_abilities.json');
+        const res = await fetch('../js/full_senju_character_abilities.json');
         const abilities = await res.json();
         const formatted = Object.entries(abilities).flatMap(([char, abilities]) =>
           abilities.map(a => ({
