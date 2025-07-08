@@ -285,8 +285,10 @@
             ];
 
             fetch('../js/full_senju_character_abilities.json')
-                .then(res => res.ok ? res.json() : Promise.reject(res.status))
-                .then(abilities => {
+              .then(res => res.json())
+              .then(abilities => {
+                  console.log(abilities);
+              });
                     const formattedAbilities = Object.keys(abilities).flatMap(character =>
                         abilities[character].map(ability => ({
                             name: ability.name || 'Unknown Ability',
