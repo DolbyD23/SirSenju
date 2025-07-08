@@ -1,4 +1,4 @@
-const senjuUniverses = [
+window.senjuUniverses = [
   {
     "name": "Elysium Nexus",
     "type": "Universe",
