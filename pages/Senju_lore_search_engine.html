@@ -285,25 +285,23 @@
             ];
 
             fetch('../js/full_senju_character_abilities.json')
-              .then(res => res.json())
-              .then(abilities => {
-                  console.log(abilities);
-              });
-                    const formattedAbilities = Object.keys(abilities).flatMap(character =>
-                        abilities[character].map(ability => ({
-                            name: ability.name || 'Unknown Ability',
-                            type: 'Ability',
-                            desc: ability.description || 'No description available',
-                            character: character
-                        }))
-                    );
-                    data = [...data, ...formattedAbilities];
-                    renderResults();
-                })
-                .catch(() => {
-                    document.getElementById('resultsContainer').innerHTML = '<p class="error">Error loading abilities. Displaying available data.</p>';
-                    renderResults();
-                });
+    .then(res => res.json())
+    .then(abilities => {
+        const formattedAbilities = Object.keys(abilities).flatMap(character =>
+            abilities[character].map(ability => ({
+                name: ability.name || 'Unknown Ability',
+                type: 'Ability',
+                desc: ability.description || 'No description available',
+                character: character
+            }))
+        );
+        data = [...data, ...formattedAbilities];
+        renderResults();
+    })
+    .catch(() => {
+        document.getElementById('resultsContainer').innerHTML = '<p class="error">Error loading abilities. Displaying available data.</p>';
+        renderResults();
+    });
         }
 
         const searchInput = document.getElementById('searchInput');
