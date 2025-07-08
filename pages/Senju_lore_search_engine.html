@@ -241,11 +241,45 @@
     filterSelect.addEventListener('change', () => renderResults(1));
     window.onload = loadData;
   </script>
-<div id="abilityModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); color:#fff; z-index:9999; padding:50px;">
-  <div style="background:#1a1a26; padding:20px; border-radius:8px; max-width:550px; margin:50px auto; position:relative;">
-    <h2 id="modalTitle"></h2>
-    <p id="modalContent"></p>
-    <button onclick="closeModal()" style="position:absolute; top:10px; right:10px; background:#ff4444; color:#fff; border:none; padding:8px 12px; cursor:pointer;">Close</button>
+<!-- ✅ MODAL HTML -->
+<div id="abilityModal" style="
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.85);
+  color: #fff;
+  z-index: 9999;
+  display: flex;
+  align-items: center;        /* vertically centers the popup */
+  justify-content: center;    /* horizontally centers it */
+  padding: 20px;
+">
+  <div style="
+    background: #1a1a26;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 80vh;          /* limits height */
+    overflow-y: auto;          /* scrollable if too much text */
+    position: relative;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  ">
+    <h2 id="modalTitle" style="margin-top:0;"></h2>
+    <p id="modalContent" style="white-space: pre-line;"></p>
+
+    <button onclick="closeModal()" style="
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #ff4444;
+      color: #fff;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+    ">Close</button>
   </div>
 </div>
 
