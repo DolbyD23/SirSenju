@@ -1,4 +1,4 @@
-const senjuFactions = [
+window.senjuFactions = [
   {
     "name": "Energetic Guardians",
     "type": "Faction",
