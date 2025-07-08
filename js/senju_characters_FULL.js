@@ -1,4 +1,4 @@
-const senjuLoreData = [
+window.senjuLoreData = [
   {
     "name": "Wakari Senju",
     "type": "Character",
