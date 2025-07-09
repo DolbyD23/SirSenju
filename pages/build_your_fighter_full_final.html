@@ -292,11 +292,8 @@ function generateRandomFighter() {
 
   generateFighterCard();
 }
-    <!-- Keep the empty select elements in HTML -->
-<select id="fighterRace"></select>
-<select id="fighterEnergy" multiple></select>
-<select id="fighterTransformation"></select>
-
+    
+// Canon dropdown values from Sir Senju lore
 const races = [
   "Human", "Myrthorian", "Murkfolk (Tidelore)", "Murkfolk (Murkcroft)", "Astral", "Sylph", 
   "Nephilim", "Draconian", "Kinetican", "Sylphkin-Hybrid", "Lunarian", "Vorak’Kai"
@@ -312,9 +309,9 @@ const transformations = [
   "Void Infusion", "Essence Echo", "Primal Shift", "Celestial Form"
 ];
 
-// Populate dropdowns dynamically
 function populateDropdown(id, options) {
   const select = document.getElementById(id);
+  select.innerHTML = ''; // Clear old options
   options.forEach(opt => {
     const option = document.createElement('option');
     option.value = opt;
@@ -323,9 +320,10 @@ function populateDropdown(id, options) {
   });
 }
 
+// Call after DOM has loaded
 populateDropdown("fighterRace", races);
 populateDropdown("fighterEnergy", energyTypes);
 populateDropdown("fighterTransformation", transformations);
-  </script>
+</script>
 </body>
 </html>
