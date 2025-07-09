@@ -160,21 +160,6 @@
   </div>
 
   <script>
-    function generateFighterCard() {
-      document.getElementById('finalFighterCard').style.display = 'flex';
-      document.getElementById('finalName').innerText = document.getElementById('fighterName').value;
-      document.getElementById('finalRace').innerText = document.getElementById('fighterRace').value;
-      document.getElementById('finalEnergy').innerText = Array.from(document.getElementById('fighterEnergy').selectedOptions).map(opt => opt.value).join(', ');
-      document.getElementById('finalTransform').innerText = document.getElementById('fighterTransformation').value;
-      document.getElementById('finalThreat').innerText = document.getElementById('fighterThreat').value;
-      document.getElementById('finalPersonality').innerText = document.getElementById('fighterPersonality').value;
-      document.getElementById('finalWeapon').innerText = document.getElementById('fighterWeapon').value;
-      document.getElementById('finalAbility1').innerText = document.getElementById('fighterAbility1').value;
-      document.getElementById('finalAbility2').innerText = document.getElementById('fighterAbility2').value;
-      document.getElementById('finalAbility3').innerText = document.getElementById('fighterAbility3').value;
-      document.getElementById('finalLore').innerText = document.getElementById('fighterBackstory').value;
-    }
-  
 function generateFighterCard() {
   document.getElementById('finalFighterCard').style.display = 'flex';
   const name = document.getElementById('fighterName').value;
@@ -201,7 +186,6 @@ function generateFighterCard() {
   document.getElementById('finalAbility3').innerText = ability3;
   document.getElementById('finalLore').innerText = lore;
 
-  // 🧠 Build prompt string for image generation
   const prompt = `${name}, a ${race} with ${energy} energy. They wield ${weapon}, transform with ${transform}, and are classified as a ${threat}-Tier fighter. Personality: ${role}. Abilities: ${ability1}, ${ability2}, ${ability3}. Backstory: ${lore}`;
   generateFighterImage(prompt);
 }
@@ -227,7 +211,7 @@ async function generateFighterImage(prompt) {
     imgElement.style.display = 'block';
   }
 }
-
+</script>
   </script>
 </body>
 </html>
