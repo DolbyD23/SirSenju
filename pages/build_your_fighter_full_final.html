@@ -187,7 +187,7 @@ function generateFighterCard() {
   document.getElementById('finalAbility3').innerText = ability3;
   document.getElementById('finalLore').innerText = lore;
 
-  const prompt = `${name}, a ${race} with ${energy} energy. They wield ${weapon}, transform with ${transform}, and are classified as a ${threat}-Tier fighter. Personality: ${role}. Abilities: ${ability1}, ${ability2}, ${ability3}. Backstory: ${lore}`;
+  const prompt = `A highly detailed anime-style portrait of ${name}, a ${race} warrior with ${energy} energy. They wield a ${weapon}, transform using ${transform}, and are classified as a ${threat}-Tier fighter. Personality: ${role}. Abilities include ${ability1}, ${ability2}, and ${ability3}. Background: ${lore}`;
   generateFighterImage(prompt);
 }
 
