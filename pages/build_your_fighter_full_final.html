@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Build Your Fighter</title>
+  <style>
+    body {
+      background-color: #0a0a12;
+      font-family: Arial, sans-serif;
+      color: #ffffff;
+      padding: 20px;
+    }
+    h1 {
+      color: #ffd966;
+      text-align: center;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
+    .input-group {
+      margin-bottom: 15px;
+    }
+    label {
+      font-weight: bold;
+      color: #ffd966;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      background: #1a1a26;
+      border: 1px solid #444;
+      border-radius: 6px;
+      color: #ffd966;
+      margin-top: 5px;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    button {
+      background-color: #ffd966;
+      color: #0a0a12;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      display: block;
+      margin: 20px auto;
+    }
+    .final-card {
+      background: #1a1a26;
+      border: 2px solid #ffd966;
+      padding: 20px;
+      margin-top: 40px;
+      border-radius: 12px;
+      display: none;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .fighter-image-preview {
+      width: 300px;
+    }
+    .fighter-image-preview img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    .card-details {
+      flex: 1;
+    }
+    .card-details h2 {
+      color: #ffd966;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Build Your Fighter</h1>
+
+    <div class="input-group">
+      <label for="fighterName">Fighter Name:</label>
+      <input type="text" id="fighterName" />
+    </div>
+    <div class="input-group">
+      <label for="fighterRace">Race:</label>
+      <select id="fighterRace">
+        <option>Human</option><option>Myrthorian</option><option>Kinetican</option><option>Sylph</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <label for="fighterEnergy">Energy Types:</label>
+      <select id="fighterEnergy" multiple>
+        <option>Fire</option><option>Lightning</option><option>Shadow</option><option>Light</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <label for="fighterTransformation">Transformation Type:</label>
+      <select id="fighterTransformation">
+        <option>Energetic Surge</option><option>Spirit Infusion</option><option>Guardian Form</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <label for="fighterThreat">Threat Tier:</label>
+      <select id="fighterThreat">
+        <option>S</option><option>A</option><option>B</option>
+      </select>
+    </div>
+    <div class="input-group">
+      <label for="fighterPersonality">Role / Personality:</label>
+      <input type="text" id="fighterPersonality" />
+    </div>
+    <div class="input-group">
+      <label for="fighterWeapon">Weapon Style:</label>
+      <input type="text" id="fighterWeapon" />
+    </div>
+    <div class="input-group">
+      <label for="fighterAbility1">Custom Ability 1:</label>
+      <input type="text" id="fighterAbility1" />
+    </div>
+    <div class="input-group">
+      <label for="fighterAbility2">Custom Ability 2:</label>
+      <input type="text" id="fighterAbility2" />
+    </div>
+    <div class="input-group">
+      <label for="fighterAbility3">Custom Ability 3:</label>
+      <input type="text" id="fighterAbility3" />
+    </div>
+    <div class="input-group">
+      <label for="fighterBackstory">Backstory / Lore:</label>
+      <textarea id="fighterBackstory"></textarea>
+    </div>
+
+    <button onclick="generateFighterCard()">Create Fighter Card</button>
+
+    <div class="final-card" id="finalFighterCard">
+      <div class="fighter-image-preview">
+        <img id="finalImage" src="https://via.placeholder.com/300x400?text=Fighter+Image" alt="Fighter Image"/>
+      </div>
+      <div class="card-details">
+        <h2 id="finalName">Name</h2>
+        <p><strong>Race:</strong> <span id="finalRace"></span></p>
+        <p><strong>Energy Types:</strong> <span id="finalEnergy"></span></p>
+        <p><strong>Transformation:</strong> <span id="finalTransform"></span></p>
+        <p><strong>Threat Tier:</strong> <span id="finalThreat"></span></p>
+        <p><strong>Role / Personality:</strong> <span id="finalPersonality"></span></p>
+        <p><strong>Weapon Style:</strong> <span id="finalWeapon"></span></p>
+        <p><strong>Abilities:</strong><br>
+          • <span id="finalAbility1"></span><br>
+          • <span id="finalAbility2"></span><br>
+          • <span id="finalAbility3"></span>
+        </p>
+        <p><strong>Backstory / Lore:</strong><br>
+          <span id="finalLore"></span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function generateFighterCard() {
+      document.getElementById('finalFighterCard').style.display = 'flex';
+      document.getElementById('finalName').innerText = document.getElementById('fighterName').value;
+      document.getElementById('finalRace').innerText = document.getElementById('fighterRace').value;
+      document.getElementById('finalEnergy').innerText = Array.from(document.getElementById('fighterEnergy').selectedOptions).map(opt => opt.value).join(', ');
+      document.getElementById('finalTransform').innerText = document.getElementById('fighterTransformation').value;
+      document.getElementById('finalThreat').innerText = document.getElementById('fighterThreat').value;
+      document.getElementById('finalPersonality').innerText = document.getElementById('fighterPersonality').value;
+      document.getElementById('finalWeapon').innerText = document.getElementById('fighterWeapon').value;
+      document.getElementById('finalAbility1').innerText = document.getElementById('fighterAbility1').value;
+      document.getElementById('finalAbility2').innerText = document.getElementById('fighterAbility2').value;
+      document.getElementById('finalAbility3').innerText = document.getElementById('fighterAbility3').value;
+      document.getElementById('finalLore').innerText = document.getElementById('fighterBackstory').value;
+    }
+  </script>
+</body>
+</html>
