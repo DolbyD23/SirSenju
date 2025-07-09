@@ -211,6 +211,66 @@ async function generateFighterImage(prompt) {
     imgElement.style.display = 'block';
   }
 }
+    function getRandom(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function generateRandomFighter() {
+  const names = ["Xyro", "Valora", "Tessen", "Dronak", "Selara", "Raion", "Myrren", "Zenith"];
+  const races = ["Human", "Myrthorian", "Kinetican", "Sylph"];
+  const energyTypes = ["Fire", "Lightning", "Shadow", "Light"];
+  const transformations = ["Energetic Surge", "Spirit Infusion", "Guardian Form"];
+  const threatTiers = ["S", "A", "B"];
+  const roles = ["Reckless Berserker", "Silent Tactician", "Loyal Guardian", "Cunning Rogue"];
+  const weapons = ["Energy Katana", "Twin Blades", "Pulse Bow", "Sonic Hammer"];
+  const abilities = [
+    "Radiant Strike",
+    "Void Pulse",
+    "Storm Dagger",
+    "Soul Echo",
+    "Blazing Spiral",
+    "Neuro Shift",
+    "Lunar Barrage"
+  ];
+  const lores = [
+    "Once trained under a fallen guardian, now wanders the Nexus seeking redemption.",
+    "Born in the Shadowlands but gifted with Light, they struggle to control both sides.",
+    "The last of an ancient order, they fight to restore their people's lost honor.",
+    "Programmed for war, but now defends peace across galaxies."
+  ];
+
+  const name = getRandom(names);
+  const race = getRandom(races);
+  const energySet = [getRandom(energyTypes), getRandom(energyTypes)];
+  const transformation = getRandom(transformations);
+  const threat = getRandom(threatTiers);
+  const role = getRandom(roles);
+  const weapon = getRandom(weapons);
+  const ability1 = getRandom(abilities);
+  const ability2 = getRandom(abilities);
+  const ability3 = getRandom(abilities);
+  const backstory = getRandom(lores);
+
+  // Set the fields
+  document.getElementById('fighterName').value = name;
+  document.getElementById('fighterRace').value = race;
+
+  const energySelect = document.getElementById('fighterEnergy');
+  Array.from(energySelect.options).forEach(option => {
+    option.selected = energySet.includes(option.value);
+  });
+
+  document.getElementById('fighterTransformation').value = transformation;
+  document.getElementById('fighterThreat').value = threat;
+  document.getElementById('fighterPersonality').value = role;
+  document.getElementById('fighterWeapon').value = weapon;
+  document.getElementById('fighterAbility1').value = ability1;
+  document.getElementById('fighterAbility2').value = ability2;
+  document.getElementById('fighterAbility3').value = ability3;
+  document.getElementById('fighterBackstory').value = backstory;
+
+  generateFighterCard();
+}
   </script>
 </body>
 </html>
