@@ -216,33 +216,53 @@ async function generateFighterImage(prompt) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
+function getRandomSubset(arr, count) {
+  const shuffled = arr.sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
+}
+
 function generateRandomFighter() {
-  const names = ["Xyro", "Valora", "Tessen", "Dronak", "Selara", "Raion", "Myrren", "Zenith"];
-  const races = ["Human", "Myrthorian", "Kinetican", "Sylph"];
-  const energyTypes = ["Fire", "Lightning", "Shadow", "Light"];
-  const transformations = ["Energetic Surge", "Spirit Infusion", "Guardian Form"];
+  const names = ["Xyro", "Valora", "Tessen", "Dronak", "Selara", "Raion", "Myrren", "Zenith", "Lyra", "Haku", "Thalon", "Zorakai"];
+  const races = [
+    "Human", "Myrthorian", "Murkfolk (Tidelore)", "Murkfolk (Murkcroft)", "Astral", "Sylph", 
+    "Nephilim", "Draconian", "Kinetican", "Sylphkin-Hybrid", "Lunarian", "Vorak’Kai"
+  ];
+  const energyTypes = [
+    "Chi", "Fire", "Lightning", "Shadow", "Light", "Celestial", "Forbidden Dark", "Natural",
+    "Kinetic", "Ethereal", "Emotional", "Nuclear", "Wind", "Water"
+  ];
+  const transformations = [
+    "Energetic Surge", "Spirit Infusion", "Guardian Form", "Nexus Ascension", 
+    "Void Infusion", "Essence Echo", "Primal Shift", "Celestial Form"
+  ];
   const threatTiers = ["S", "A", "B"];
-  const roles = ["Reckless Berserker", "Silent Tactician", "Loyal Guardian", "Cunning Rogue"];
-  const weapons = ["Energy Katana", "Twin Blades", "Pulse Bow", "Sonic Hammer"];
+  const roles = [
+    "Reckless Berserker", "Silent Tactician", "Loyal Guardian", "Cunning Rogue", 
+    "Wandering Monk", "Vengeful Outcast", "Noble Protector", "Voidborn Renegade"
+  ];
+  const weapons = [
+    "Energy Katana", "Twin Blades", "Pulse Bow", "Sonic Hammer", 
+    "Spirit Staff", "Void Gauntlets", "Temporal Chakrams", "Celestial Spear"
+  ];
   const abilities = [
-    "Radiant Strike",
-    "Void Pulse",
-    "Storm Dagger",
-    "Soul Echo",
-    "Blazing Spiral",
-    "Neuro Shift",
-    "Lunar Barrage"
+    "Radiant Strike", "Void Pulse", "Storm Dagger", "Soul Echo", "Blazing Spiral",
+    "Neuro Shift", "Lunar Barrage", "Aether Claw", "Chi Bloom", "Flame Veil",
+    "Chrono Step", "Darkroot Bind", "Aurora Flash", "Shadow Howl"
   ];
   const lores = [
     "Once trained under a fallen guardian, now wanders the Nexus seeking redemption.",
     "Born in the Shadowlands but gifted with Light, they struggle to control both sides.",
     "The last of an ancient order, they fight to restore their people's lost honor.",
-    "Programmed for war, but now defends peace across galaxies."
+    "Programmed for war, but now defends peace across galaxies.",
+    "A Sylphkin hybrid who commands wind like a symphony and shields allies midair.",
+    "They survived a forbidden dark ritual and now wield power none can comprehend.",
+    "Their presence bends the environment; reality falters in their wake.",
+    "The soul of an ancient protector reawakens in their bloodline."
   ];
 
   const name = getRandom(names);
   const race = getRandom(races);
-  const energySet = [getRandom(energyTypes), getRandom(energyTypes)];
+  const energySet = getRandomSubset(energyTypes, Math.floor(Math.random() * 2) + 2); // 2 or 3 energy types
   const transformation = getRandom(transformations);
   const threat = getRandom(threatTiers);
   const role = getRandom(roles);
@@ -272,6 +292,40 @@ function generateRandomFighter() {
 
   generateFighterCard();
 }
+    <!-- Keep the empty select elements in HTML -->
+<select id="fighterRace"></select>
+<select id="fighterEnergy" multiple></select>
+<select id="fighterTransformation"></select>
+
+const races = [
+  "Human", "Myrthorian", "Murkfolk (Tidelore)", "Murkfolk (Murkcroft)", "Astral", "Sylph", 
+  "Nephilim", "Draconian", "Kinetican", "Sylphkin-Hybrid", "Lunarian", "Vorak’Kai"
+];
+
+const energyTypes = [
+  "Chi", "Fire", "Lightning", "Shadow", "Light", "Celestial", "Forbidden Dark", "Natural",
+  "Kinetic", "Ethereal", "Emotional", "Nuclear", "Wind", "Water"
+];
+
+const transformations = [
+  "Energetic Surge", "Spirit Infusion", "Guardian Form", "Nexus Ascension", 
+  "Void Infusion", "Essence Echo", "Primal Shift", "Celestial Form"
+];
+
+// Populate dropdowns dynamically
+function populateDropdown(id, options) {
+  const select = document.getElementById(id);
+  options.forEach(opt => {
+    const option = document.createElement('option');
+    option.value = opt;
+    option.innerText = opt;
+    select.appendChild(option);
+  });
+}
+
+populateDropdown("fighterRace", races);
+populateDropdown("fighterEnergy", energyTypes);
+populateDropdown("fighterTransformation", transformations);
   </script>
 </body>
 </html>
