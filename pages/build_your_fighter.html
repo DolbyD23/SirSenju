@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Build Your Fighter</title>
+  <link rel="icon" href="/favicon.png" type="image/png" />
+  <style>
+    body {
+      background: #0a0a12;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    h1 {
+      font-size: 36px;
+      color: #ffd966;
+    }
+    .builder-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+    .builder-form {
+      flex: 1;
+      max-width: 400px;
+      background: #1a1a26;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .builder-form label {
+      display: block;
+      margin-top: 10px;
+    }
+    .builder-form select, .builder-form input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: none;
+      border-radius: 6px;
+      background: #2c2c3c;
+      color: white;
+    }
+    .builder-form button {
+      margin-top: 20px;
+      padding: 12px;
+      width: 100%;
+      background: #00b3b3;
+      border: none;
+      color: white;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .fighter-card {
+      flex: 1;
+      max-width: 400px;
+      background: #1e1e30;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .fighter-card h2 {
+      color: #ffcc66;
+      margin-top: 0;
+    }
+    .fighter-card .image-placeholder {
+      width: 100%;
+      height: 300px;
+      background: #2c2c3c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      color: #888;
+    }
+    .fighter-card .stats {
+      text-align: left;
+      font-size: 15px;
+      margin-top: 10px;
+    }
+    .fighter-card .stats div {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Build Your Fighter</h1>
+    <p>Create a custom warrior in the Sir Senju universe</p>
+  </header>
+
+  <div class="builder-container">
+    <div class="builder-form">
+      <label for="fighterName">Name</label>
+      <input type="text" id="fighterName" placeholder="Enter name"/>
+
+      <label for="fighterRace">Race</label>
+      <select id="fighterRace"></select>
+
+      <label for="fighterEnergy">Primary Energy</label>
+      <select id="fighterEnergy"></select>
+
+      <label for="fighterAffinity">Affinity Type</label>
+      <select id="fighterAffinity">
+        <option>Fire</option>
+        <option>Water</option>
+        <option>Lightning</option>
+        <option>Shadow</option>
+        <option>Light</option>
+        <option>Chi</option>
+        <option>Emotional</option>
+        <option>Nuclear</option>
+        <option>Natural</option>
+      </select>
+
+      <button onclick="generateFighter()">Build Fighter</button>
+      <button onclick="generateRandom()">Random Fighter</button>
+    </div>
+
+    <div class="fighter-card" id="fighterCard">
+      <div class="image-placeholder">Fighter Image</div>
+      <h2 id="cardName">Name: ???</h2>
+      <div class="stats">
+        <div><strong>Race:</strong> <span id="cardRace">-</span></div>
+        <div><strong>Primary Energy:</strong> <span id="cardEnergy">-</span></div>
+        <div><strong>Affinity:</strong> <span id="cardAffinity">-</span></div>
+        <div><strong>Power Level:</strong> <span id="cardPower">-</span></div>
+        <div><strong>Speed:</strong> <span id="cardSpeed">-</span></div>
+        <div><strong>Durability:</strong> <span id="cardDurability">-</span></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/senju_races.js"></script>
+  <script src="../js/senju_energy_types.js"></script>
+
+  <script>
+    function populateDropdown(id, items) {
+      const dropdown = document.getElementById(id);
+      dropdown.innerHTML = items.map(item => 
+        `<option value="${item.name}">${item.name}</option>`
+      ).join('');
+    }
+
+    function generateFighter() {
+      const name = document.getElementById('fighterName').value || "Unnamed Warrior";
+      const race = document.getElementById('fighterRace').value;
+      const energy = document.getElementById('fighterEnergy').value;
+      const affinity = document.getElementById('fighterAffinity').value;
+
+      document.getElementById('cardName').textContent = "Name: " + name;
+      document.getElementById('cardRace').textContent = race;
+      document.getElementById('cardEnergy').textContent = energy;
+      document.getElementById('cardAffinity').textContent = affinity;
+
+      document.getElementById('cardPower').textContent = Math.floor(Math.random() * 100);
+      document.getElementById('cardSpeed').textContent = Math.floor(Math.random() * 100);
+      document.getElementById('cardDurability').textContent = Math.floor(Math.random() * 100);
+    }
+
+    function generateRandom() {
+      document.getElementById('fighterName').value = "Fighter #" + Math.floor(Math.random() * 9999);
+      document.getElementById('fighterRace').selectedIndex = Math.floor(Math.random() * document.getElementById('fighterRace').length);
+      document.getElementById('fighterEnergy').selectedIndex = Math.floor(Math.random() * document.getElementById('fighterEnergy').length);
+      document.getElementById('fighterAffinity').selectedIndex = Math.floor(Math.random() * document.getElementById('fighterAffinity').length);
+      generateFighter();
+    }
+
+    window.onload = () => {
+      populateDropdown('fighterRace', window.senjuRaces || []);
+      populateDropdown('fighterEnergy', window.senjuEnergyTypes || []);
+    };
+  </script>
+</body>
+</html>
