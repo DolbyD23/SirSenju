@@ -80,62 +80,21 @@
   <div class="container">
     <h1>Build Your Fighter</h1>
 
-    <div class="input-group">
-      <label for="fighterName">Fighter Name:</label>
-      <input type="text" id="fighterName" />
-    </div>
-    <div class="input-group">
-      <label for="fighterRace">Race:</label>
-      <select id="fighterRace">
-        <option>Human</option><option>Myrthorian</option><option>Kinetican</option><option>Sylph</option>
-      </select>
-    </div>
-    <div class="input-group">
-      <label for="fighterEnergy">Energy Types:</label>
-      <select id="fighterEnergy" multiple>
-        <option>Fire</option><option>Lightning</option><option>Shadow</option><option>Light</option>
-      </select>
-    </div>
-    <div class="input-group">
-      <label for="fighterTransformation">Transformation Type:</label>
-      <select id="fighterTransformation">
-        <option>Energetic Surge</option><option>Spirit Infusion</option><option>Guardian Form</option>
-      </select>
-    </div>
-    <div class="input-group">
-      <label for="fighterThreat">Threat Tier:</label>
-      <select id="fighterThreat">
-        <option>S</option><option>A</option><option>B</option>
-      </select>
-    </div>
-    <div class="input-group">
-      <label for="fighterPersonality">Role / Personality:</label>
-      <input type="text" id="fighterPersonality" />
-    </div>
-    <div class="input-group">
-      <label for="fighterWeapon">Weapon Style:</label>
-      <input type="text" id="fighterWeapon" />
-    </div>
-    <div class="input-group">
-      <label for="fighterAbility1">Custom Ability 1:</label>
-      <input type="text" id="fighterAbility1" />
-    </div>
-    <div class="input-group">
-      <label for="fighterAbility2">Custom Ability 2:</label>
-      <input type="text" id="fighterAbility2" />
-    </div>
-    <div class="input-group">
-      <label for="fighterAbility3">Custom Ability 3:</label>
-      <input type="text" id="fighterAbility3" />
-    </div>
-    <div class="input-group">
-      <label for="fighterBackstory">Backstory / Lore:</label>
-      <textarea id="fighterBackstory"></textarea>
-    </div>
+    <div class="input-group"><label for="fighterName">Fighter Name:</label><input type="text" id="fighterName" /></div>
+    <div class="input-group"><label for="fighterRace">Race:</label><select id="fighterRace"></select></div>
+    <div class="input-group"><label for="fighterEnergy">Energy Types:</label><select id="fighterEnergy" multiple></select></div>
+    <div class="input-group"><label for="fighterTransformation">Transformation Type:</label><select id="fighterTransformation"></select></div>
+    <div class="input-group"><label for="fighterThreat">Threat Tier:</label><select id="fighterThreat"><option>S</option><option>A</option><option>B</option></select></div>
+    <div class="input-group"><label for="fighterPersonality">Role / Personality:</label><input type="text" id="fighterPersonality" /></div>
+    <div class="input-group"><label for="fighterWeapon">Weapon Style:</label><input type="text" id="fighterWeapon" /></div>
+    <div class="input-group"><label for="fighterAbility1">Custom Ability 1:</label><input type="text" id="fighterAbility1" /></div>
+    <div class="input-group"><label for="fighterAbility2">Custom Ability 2:</label><input type="text" id="fighterAbility2" /></div>
+    <div class="input-group"><label for="fighterAbility3">Custom Ability 3:</label><input type="text" id="fighterAbility3" /></div>
+    <div class="input-group"><label for="fighterBackstory">Backstory / Lore:</label><textarea id="fighterBackstory"></textarea></div>
 
     <button onclick="generateFighterCard()">Create Fighter Card</button>
     <button onclick="generateRandomFighter()">Generate Random Fighter</button>
-    
+
     <div class="final-card" id="finalFighterCard">
       <div class="fighter-image-preview">
         <img id="finalImage" src="https://via.placeholder.com/300x400?text=Fighter+Image" alt="Fighter Image"/>
@@ -161,31 +120,48 @@
   </div>
 
   <script>
-function generateFighterCard() {
-  document.getElementById('finalFighterCard').style.display = 'flex';
-  const name = document.getElementById('fighterName').value;
-  const race = document.getElementById('fighterRace').value;
-  const energy = Array.from(document.getElementById('fighterEnergy').selectedOptions).map(opt => opt.value).join(', ');
-  const transform = document.getElementById('fighterTransformation').value;
-  const threat = document.getElementById('fighterThreat').value;
-  const role = document.getElementById('fighterPersonality').value;
-  const weapon = document.getElementById('fighterWeapon').value;
-  const ability1 = document.getElementById('fighterAbility1').value;
-  const ability2 = document.getElementById('fighterAbility2').value;
-  const ability3 = document.getElementById('fighterAbility3').value;
-  const lore = document.getElementById('fighterBackstory').value;
+const races = ["Human", "Myrthorian", "Murkfolk (Tidelore)", "Murkfolk (Murkcroft)", "Astral", "Sylph", "Nephilim", "Draconian", "Kinetican", "Sylphkin-Hybrid", "Lunarian", "Vorak’Kai"];
+const energyTypes = ["Chi", "Fire", "Lightning", "Shadow", "Light", "Celestial", "Forbidden Dark", "Natural", "Kinetic", "Ethereal", "Emotional", "Nuclear", "Wind", "Water"];
+const transformations = ["Energetic Surge", "Spirit Infusion", "Guardian Form", "Nexus Ascension", "Void Infusion", "Essence Echo", "Primal Shift", "Celestial Form"];
 
-  document.getElementById('finalName').innerText = name;
-  document.getElementById('finalRace').innerText = race;
-  document.getElementById('finalEnergy').innerText = energy;
-  document.getElementById('finalTransform').innerText = transform;
-  document.getElementById('finalThreat').innerText = threat;
-  document.getElementById('finalPersonality').innerText = role;
-  document.getElementById('finalWeapon').innerText = weapon;
-  document.getElementById('finalAbility1').innerText = ability1;
-  document.getElementById('finalAbility2').innerText = ability2;
-  document.getElementById('finalAbility3').innerText = ability3;
-  document.getElementById('finalLore').innerText = lore;
+function populateDropdown(id, options) {
+  const select = document.getElementById(id);
+  options.forEach(opt => {
+    const option = document.createElement("option");
+    option.value = opt;
+    option.innerText = opt;
+    select.appendChild(option);
+  });
+}
+populateDropdown("fighterRace", races);
+populateDropdown("fighterEnergy", energyTypes);
+populateDropdown("fighterTransformation", transformations);
+
+function generateFighterCard() {
+  document.getElementById("finalFighterCard").style.display = "flex";
+  const name = document.getElementById("fighterName").value;
+  const race = document.getElementById("fighterRace").value;
+  const energy = Array.from(document.getElementById("fighterEnergy").selectedOptions).map(opt => opt.value).join(", ");
+  const transform = document.getElementById("fighterTransformation").value;
+  const threat = document.getElementById("fighterThreat").value;
+  const role = document.getElementById("fighterPersonality").value;
+  const weapon = document.getElementById("fighterWeapon").value;
+  const ability1 = document.getElementById("fighterAbility1").value;
+  const ability2 = document.getElementById("fighterAbility2").value;
+  const ability3 = document.getElementById("fighterAbility3").value;
+  const lore = document.getElementById("fighterBackstory").value;
+
+  document.getElementById("finalName").innerText = name;
+  document.getElementById("finalRace").innerText = race;
+  document.getElementById("finalEnergy").innerText = energy;
+  document.getElementById("finalTransform").innerText = transform;
+  document.getElementById("finalThreat").innerText = threat;
+  document.getElementById("finalPersonality").innerText = role;
+  document.getElementById("finalWeapon").innerText = weapon;
+  document.getElementById("finalAbility1").innerText = ability1;
+  document.getElementById("finalAbility2").innerText = ability2;
+  document.getElementById("finalAbility3").innerText = ability3;
+  document.getElementById("finalLore").innerText = lore;
 
   const prompt = `A highly detailed anime-style portrait of ${name}, a ${race} warrior with ${energy} energy. They wield a ${weapon}, transform using ${transform}, and are classified as a ${threat}-Tier fighter. Personality: ${role}. Abilities include ${ability1}, ${ability2}, and ${ability3}. Background: ${lore}`;
   generateFighterImage(prompt);
@@ -197,25 +173,16 @@ async function generateFighterImage(prompt) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ prompt })
   });
-
-  if (!response.ok) {
-    alert("Failed to generate image.");
-    return;
-  }
-
+  if (!response.ok) return alert("Failed to generate image.");
   const data = await response.json();
-  const image = data.image;
-
-  if (image) {
-    const imgElement = document.getElementById('finalImage');
-    imgElement.src = `data:image/png;base64,${image}`;
-    imgElement.style.display = 'block';
+  if (data.image) {
+    document.getElementById("finalImage").src = `data:image/png;base64,${data.image}`;
   }
 }
-    function getRandom(arr) {
+
+function getRandom(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
-
 function getRandomSubset(arr, count) {
   const shuffled = arr.sort(() => 0.5 - Math.random());
   return shuffled.slice(0, count);
@@ -223,32 +190,9 @@ function getRandomSubset(arr, count) {
 
 function generateRandomFighter() {
   const names = ["Xyro", "Valora", "Tessen", "Dronak", "Selara", "Raion", "Myrren", "Zenith", "Lyra", "Haku", "Thalon", "Zorakai"];
-  const races = [
-    "Human", "Myrthorian", "Murkfolk (Tidelore)", "Murkfolk (Murkcroft)", "Astral", "Sylph", 
-    "Nephilim", "Draconian", "Kinetican", "Sylphkin-Hybrid", "Lunarian", "Vorak’Kai"
-  ];
-  const energyTypes = [
-    "Chi", "Fire", "Lightning", "Shadow", "Light", "Celestial", "Forbidden Dark", "Natural",
-    "Kinetic", "Ethereal", "Emotional", "Nuclear", "Wind", "Water"
-  ];
-  const transformations = [
-    "Energetic Surge", "Spirit Infusion", "Guardian Form", "Nexus Ascension", 
-    "Void Infusion", "Essence Echo", "Primal Shift", "Celestial Form"
-  ];
-  const threatTiers = ["S", "A", "B"];
-  const roles = [
-    "Reckless Berserker", "Silent Tactician", "Loyal Guardian", "Cunning Rogue", 
-    "Wandering Monk", "Vengeful Outcast", "Noble Protector", "Voidborn Renegade"
-  ];
-  const weapons = [
-    "Energy Katana", "Twin Blades", "Pulse Bow", "Sonic Hammer", 
-    "Spirit Staff", "Void Gauntlets", "Temporal Chakrams", "Celestial Spear"
-  ];
-  const abilities = [
-    "Radiant Strike", "Void Pulse", "Storm Dagger", "Soul Echo", "Blazing Spiral",
-    "Neuro Shift", "Lunar Barrage", "Aether Claw", "Chi Bloom", "Flame Veil",
-    "Chrono Step", "Darkroot Bind", "Aurora Flash", "Shadow Howl"
-  ];
+  const roles = ["Reckless Berserker", "Silent Tactician", "Loyal Guardian", "Cunning Rogue", "Wandering Monk", "Vengeful Outcast", "Noble Protector", "Voidborn Renegade"];
+  const weapons = ["Energy Katana", "Twin Blades", "Pulse Bow", "Sonic Hammer", "Spirit Staff", "Void Gauntlets", "Temporal Chakrams", "Celestial Spear"];
+  const abilities = ["Radiant Strike", "Void Pulse", "Storm Dagger", "Soul Echo", "Blazing Spiral", "Neuro Shift", "Lunar Barrage", "Aether Claw", "Chi Bloom", "Flame Veil", "Chrono Step", "Darkroot Bind", "Aurora Flash", "Shadow Howl"];
   const lores = [
     "Once trained under a fallen guardian, now wanders the Nexus seeking redemption.",
     "Born in the Shadowlands but gifted with Light, they struggle to control both sides.",
@@ -260,70 +204,25 @@ function generateRandomFighter() {
     "The soul of an ancient protector reawakens in their bloodline."
   ];
 
-  const name = getRandom(names);
-  const race = getRandom(races);
-  const energySet = getRandomSubset(energyTypes, Math.floor(Math.random() * 2) + 2); // 2 or 3 energy types
-  const transformation = getRandom(transformations);
-  const threat = getRandom(threatTiers);
-  const role = getRandom(roles);
-  const weapon = getRandom(weapons);
-  const ability1 = getRandom(abilities);
-  const ability2 = getRandom(abilities);
-  const ability3 = getRandom(abilities);
-  const backstory = getRandom(lores);
+  document.getElementById("fighterName").value = getRandom(names);
+  document.getElementById("fighterRace").value = getRandom(races);
 
-  // Set the fields
-  document.getElementById('fighterName').value = name;
-  document.getElementById('fighterRace').value = race;
-
-  const energySelect = document.getElementById('fighterEnergy');
-  Array.from(energySelect.options).forEach(option => {
-    option.selected = energySet.includes(option.value);
+  const energySet = getRandomSubset(energyTypes, Math.floor(Math.random() * 2) + 2);
+  Array.from(document.getElementById("fighterEnergy").options).forEach(opt => {
+    opt.selected = energySet.includes(opt.value);
   });
 
-  document.getElementById('fighterTransformation').value = transformation;
-  document.getElementById('fighterThreat').value = threat;
-  document.getElementById('fighterPersonality').value = role;
-  document.getElementById('fighterWeapon').value = weapon;
-  document.getElementById('fighterAbility1').value = ability1;
-  document.getElementById('fighterAbility2').value = ability2;
-  document.getElementById('fighterAbility3').value = ability3;
-  document.getElementById('fighterBackstory').value = backstory;
+  document.getElementById("fighterTransformation").value = getRandom(transformations);
+  document.getElementById("fighterThreat").value = getRandom(["S", "A", "B"]);
+  document.getElementById("fighterPersonality").value = getRandom(roles);
+  document.getElementById("fighterWeapon").value = getRandom(weapons);
+  document.getElementById("fighterAbility1").value = getRandom(abilities);
+  document.getElementById("fighterAbility2").value = getRandom(abilities);
+  document.getElementById("fighterAbility3").value = getRandom(abilities);
+  document.getElementById("fighterBackstory").value = getRandom(lores);
 
   generateFighterCard();
 }
-    
-// Canon dropdown values from Sir Senju lore
-const races = [
-  "Human", "Myrthorian", "Murkfolk (Tidelore)", "Murkfolk (Murkcroft)", "Astral", "Sylph", 
-  "Nephilim", "Draconian", "Kinetican", "Sylphkin-Hybrid", "Lunarian", "Vorak’Kai"
-];
-
-const energyTypes = [
-  "Chi", "Fire", "Lightning", "Shadow", "Light", "Celestial", "Forbidden Dark", "Natural",
-  "Kinetic", "Ethereal", "Emotional", "Nuclear", "Wind", "Water"
-];
-
-const transformations = [
-  "Energetic Surge", "Spirit Infusion", "Guardian Form", "Nexus Ascension", 
-  "Void Infusion", "Essence Echo", "Primal Shift", "Celestial Form"
-];
-
-function populateDropdown(id, options) {
-  const select = document.getElementById(id);
-  select.innerHTML = ''; // Clear old options
-  options.forEach(opt => {
-    const option = document.createElement('option');
-    option.value = opt;
-    option.innerText = opt;
-    select.appendChild(option);
-  });
-}
-
-// Call after DOM has loaded
-populateDropdown("fighterRace", races);
-populateDropdown("fighterEnergy", energyTypes);
-populateDropdown("fighterTransformation", transformations);
 </script>
 </body>
 </html>
