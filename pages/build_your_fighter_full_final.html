@@ -175,6 +175,37 @@
       document.getElementById('finalLore').innerText = document.getElementById('fighterBackstory').value;
     }
     <script>
+function generateFighterCard() {
+  document.getElementById('finalFighterCard').style.display = 'flex';
+  const name = document.getElementById('fighterName').value;
+  const race = document.getElementById('fighterRace').value;
+  const energy = Array.from(document.getElementById('fighterEnergy').selectedOptions).map(opt => opt.value).join(', ');
+  const transform = document.getElementById('fighterTransformation').value;
+  const threat = document.getElementById('fighterThreat').value;
+  const role = document.getElementById('fighterPersonality').value;
+  const weapon = document.getElementById('fighterWeapon').value;
+  const ability1 = document.getElementById('fighterAbility1').value;
+  const ability2 = document.getElementById('fighterAbility2').value;
+  const ability3 = document.getElementById('fighterAbility3').value;
+  const lore = document.getElementById('fighterBackstory').value;
+
+  document.getElementById('finalName').innerText = name;
+  document.getElementById('finalRace').innerText = race;
+  document.getElementById('finalEnergy').innerText = energy;
+  document.getElementById('finalTransform').innerText = transform;
+  document.getElementById('finalThreat').innerText = threat;
+  document.getElementById('finalPersonality').innerText = role;
+  document.getElementById('finalWeapon').innerText = weapon;
+  document.getElementById('finalAbility1').innerText = ability1;
+  document.getElementById('finalAbility2').innerText = ability2;
+  document.getElementById('finalAbility3').innerText = ability3;
+  document.getElementById('finalLore').innerText = lore;
+
+  // 🧠 Build prompt string for image generation
+  const prompt = `${name}, a ${race} with ${energy} energy. They wield ${weapon}, transform with ${transform}, and are classified as a ${threat}-Tier fighter. Personality: ${role}. Abilities: ${ability1}, ${ability2}, ${ability3}. Backstory: ${lore}`;
+  generateFighterImage(prompt);
+}
+
 async function generateFighterImage(prompt) {
   const response = await fetch('https://sir-senju-fighter-generator.dwanbanks230.repl.co/generate', {
     method: 'POST',
@@ -191,12 +222,12 @@ async function generateFighterImage(prompt) {
   const image = data.image;
 
   if (image) {
-    const imgElement = document.getElementById('generatedImage');
+    const imgElement = document.getElementById('finalImage');
     imgElement.src = `data:image/png;base64,${image}`;
     imgElement.style.display = 'block';
   }
 }
-</script>
+
   </script>
 </body>
 </html>
